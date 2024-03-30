@@ -537,12 +537,13 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         margin: 15px 0;
     }
 
+
     .navbar ul li {
-        font-family: century;
-        font-size: 0.95rem;
+        font-size: 1.2rem;
         font-style: normal;
         font-weight: bold;
-        padding: 1px;
+        width: 93px;
+        padding: 8px;
     }
 
     .navbar ul li a {
