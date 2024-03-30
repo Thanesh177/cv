@@ -6,92 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href ="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="app.js"> </script>
+    <script defer src ="app.js"></script>
+    <script defer src ="appp.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slideContainer = document.querySelector(".slide ul li");
+            const prevBtn = document.querySelector(".hi-prev");
+            const nextBtn = document.querySelector(".hi-next");
+            let currentIndex = 0;
+    
+            // Function to move to the next slide
+            function nextSlide() {
+                currentIndex++;
+                if (currentIndex >= slideContainer.children.length) {
+                    currentIndex = 0;
+                }
+                updateSlide();
+            }
+    
+            // Function to move to the previous slide
+            function prevSlide() {
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = slideContainer.children.length - 1;
+                }
+                updateSlide();
+            }
+    
+            // Function to update the slide based on the current index
+            function updateSlide() {
+                const offset = -currentIndex * 754; // Width of each slide
+                slideContainer.style.transform = `translateX(${offset}px)`;
+            }
+    
+            // Event listeners for next and previous buttons
+            nextBtn.addEventListener("click", nextSlide);
+            prevBtn.addEventListener("click", prevSlide);
+        });
+    </script>
+
 
   </head>
   <body>
     <nav class="navbar">
        <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About me</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#portfolio">protfolio</a></li>
+            <li><a href="#timeline">Timeline</a></li>
             <li><a href="#services">Service</a></li>
-            <li><a href="#contact">Contact me</a></li>
-        </ul> 
+            <li><a href="#contact">Contact</a></li>
+       </ul>
     </nav>
 
     <section id ="home">
         <div class="main">
             <h1 class="heading">I &nbsp Am &nbsp Thanesh</h1>
             <br>
-            <a  href="#contact" class="btn">
-                HIRE ME
-            </a>
+            <div class="m">
+                <a  href="#contact" class="btn">
+                    HIRE ME
+                </a>
+            </div>
         </div>
     </section>
 
     <section id="about">
-        <br>
-        <h1 class="headings" style="text-align: center; color :white; "> ABOUT ME</h1>
-        <br>
-        <div id="pic">
-            <img src="WhatsApp Image 2024-03-11 at 19.06.26_83f9ad3a.jpg" alt="">
             <div id="intro">
-                <h2>Thanesh</h2>
-                <p>My name is Thanesh, and I am an aspiring Indian student who seeks to broaden my knowledge and expertise by immersing myself in various cultures and environments. I firmly believe that pursuing my master’s degree in computer science at Lakehead University will provide me with a transformative educational experience. I am writing to submit my statement of purpose as part of my application for a student visa to Canada. I am excited to express my sincere desire to pursue the Computer Science master’s program at Lakehead University and humbly request your consideration for granting me the opportunity to study in Canada.</p>
+                <p class="m">My name is Thanesh, and I am an aspiring Indian student who seeks to broaden my knowledge and expertise by immersing myself in various cultures and environments. I firmly believe that pursuing my master’s degree in computer science at Lakehead University will provide me with a transformative educational experience. I am writing to submit my statement of purpose as part of my application for a student visa to Canada. I am excited to express my sincere desire to pursue the Computer Science master’s program at Lakehead University and humbly request your consideration for granting me the opportunity to study in Canada.</p>
             </div>
         </div>
     </section>
 
     <section id="portfolio">
-        <h1 class="heading" style="color: white">PORTFOLIO</h1>
-        <div class="gallery">
-            <img src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" alt="">
-            <img src="0x0.jpg" alt="">
-            <img src="what-is-java-image.png" alt="">
-            <img src="main-qimg-0525b2ecb9771376a0eb061144c0a78d.jpeg" alt="">
-            <img src="business-data-analysis-1.jpg" alt="">
+        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">            
+            <img class="image"  src="0x0.jpg" draggable="false"/>
+            <img class="image" src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" draggable="false"/> 
+            <img class="image" src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" draggable="false"/> 
+            <img class="image" src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" draggable="false"/> 
+            <img class="image" src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" draggable="false"/>       
+            <img class="image" src="Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg" draggable="false"/> 
         </div>
     </section>
 
+    <section id="timeline">
+        <div class="container left">
+            <img src="">
+            <div class="text-box">
+                <h2>google</h2>
+                <small>2015</small>
+                <p> hbibibbkkjbb</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <img src="">
+            <div class="text-box">
+                <h2>google</h2>
+                <small>2015</small>
+                <p> hbibibbkkjbb</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <img src="">
+            <div class="text-box">
+                <h2>google</h2>
+                <small>2015</small>
+                <p> hbibibbkkjbb</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <img src="">
+            <div class="text-box">
+                <h2>google</h2>
+                <small>2015</small>
+                <p> hbibibbkkjbb</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <img src="">
+            <div class="text-box">
+                <h2>googe</h2>
+                <small>2015</small>
+                <p> hbibibbkkjbb</p>
+            </div>
+        </div>
+    </section>
+
+
     <section id="services">
-        <h1 class="headings" style="text-align: center; color: white">SERVICE</h1>
+        <h1 class="heading" style="text-align: center; color: white">SERVICE</h1>
         <br>
         <div class="row">
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">Website Design</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
             
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">gaming</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
 
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">gaming</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
 
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">gaming</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
 
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">gaming</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
 
             <div class="box">
-                <img src="ul-certification-service-500x500.png" alt="">
                 <h1 class="heading" style="color:black">gaming</h1>
-                <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
             </div>
         </div>
     </section>
@@ -105,21 +184,13 @@
             <textarea name="msg" id="msg" cols="30" role="30" placeholder="enter your msg"></textarea>
             <input type="submit" value="SEND" id="send">
         </form>
-        
-        <div class="oi">
-            <a href="https://www.facebook.com/profile.php?id=100009152678676" <i class='bx bxl-facebook'></i></a>
-            <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-linkedin'></i></a>
-            <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bxl-instagram' ></i></a>
-        </div>
+            <div class="oi">
+                <a  href="https://www.facebook.com/profile.php?id=100009152678676" <i class='bx bxl-facebook'></i></a>
+                <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bxl-instagram' ></i></a>
+            </div>
     </section>
 
- <!--   <section class="fade">
-            <h1>hi</h1>
-            <p>gffvuyguyibyt7rtnfigbt
-                b jmbn b kk
-            </p>
-    </section>   -->
-    <div class="scroll-watcher"></div>
-  </form>
+             
  </body>
  </html> 
