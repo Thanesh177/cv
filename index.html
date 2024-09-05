@@ -12,62 +12,54 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const slideContainer = document.querySelector(".slide ul li");
-            const prevBtn = document.querySelector(".hi-prev");
-            const nextBtn = document.querySelector(".hi-next");
-            let currentIndex = 0;
-    
-            // Function to move to the next slide
-            function nextSlide() {
-                currentIndex++;
-                if (currentIndex >= slideContainer.children.length) {
-                    currentIndex = 0;
-                }
-                updateSlide();
+            // Function to hide the loading screen with fade-out effect
+            function hideLoading() {
+              var loadingScreen = document.querySelector('.loading');
+              if (loadingScreen) {
+                loadingScreen.style.animation = 'fadeOut 2s ease forwards'; // Fade-out animation
+                setTimeout(function() {
+                  loadingScreen.style.display = 'none';
+                }, 1000); // Delay hiding to match fade-out animation duration
+              }
             }
-    
-            // Function to move to the previous slide
-            function prevSlide() {
-                currentIndex--;
-                if (currentIndex < 0) {
-                    currentIndex = slideContainer.children.length - 1;
-                }
-                updateSlide();
-            }
-    
-            // Function to update the slide based on the current index
-            function updateSlide() {
-                const offset = -currentIndex * 754; // Width of each slide
-                slideContainer.style.transform = `translateX(${offset}px)`;
-            }
-    
-            // Event listeners for next and previous buttons
-            nextBtn.addEventListener("click", nextSlide);
-            prevBtn.addEventListener("click", prevSlide);
-        });
+            
+            // Hide the loading screen after 2 seconds (2000 milliseconds)
+            setTimeout(hideLoading, 3000);
+          });
+          
     </script>
 
 
   </head>
   <body>
+    <div class="loading">
+        <div class="loading-text">
+          <span class="loading-text-words">L</span>
+          <span class="loading-text-words">O</span>
+          <span class="loading-text-words">A</span>
+          <span class="loading-text-words">D</span>
+          <span class="loading-text-words">I</span>
+          <span class="loading-text-words">N</span>
+          <span class="loading-text-words">G</span>
+        </div>
+      </div>
     <nav class="navbar">
        <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#portfolio">protfolio</a></li>
             <li><a href="#services">Service</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="cv.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
        </ul>
     </nav>
 
     <section id ="home">
         <div class="main">
-            <h1 class="heading">I &nbsp Am &nbsp Thanesh</h1>
             <br>
-            <div class="m">
-                <a  href="#contact" class="btn">
-                    HIRE ME
-                </a>
-            </div>
+            <br>
+            <h1 class="heading">I &nbsp Am &nbsp Thanesh</h1>
+            
+
         </div>
     </section>
 
@@ -138,38 +130,69 @@
 
 
     <section id="services">
-        <h1 class="heading" style="text-align: center; color: white">SERVICE</h1>
+        <h1 class="head" style="text-align: center; color: white">SERVICE</h1>
         <br>
         <div class="row">
-            <div class="box">
-                <h1 class="heading" style="color:black">Website Design</h1>
-                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
+            </div>            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
             </div>
-            
-            <div class="box">
-                <h1 class="heading" style="color:black">gaming</h1>
-                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
+            </div>
+            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
+            </div>
+            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
+            </div>
+            <div class="box" id="myBox">
+                <div  class ="c" id="c">
+                    <p>He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
+                </div>
+                <div class="pp">
+                    <a class="bt" href="#" id="myButton">></a>
+                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
+                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
+                </div>       
             </div>
 
-            <div class="box">
-                <h1 class="heading" style="color:black">gaming</h1>
-                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
-            </div>
-
-            <div class="box">
-                <h1 class="heading" style="color:black">gaming</h1>
-                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
-            </div>
-
-            <div class="box">
-                <h1 class="heading" style="color:black">gaming</h1>
-                <p class="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
-            </div>
-
-            <div class="box">
-                <h1 class="heading" style="color:black">gaming</h1>
-                <p class ="m">He has always been an independent thinker, eager to learn new things, while displaying huge promise through his penchant to delve beyond the scope of the curriculum. He has always kept himself updated regarding current developments while minutely examining all technical literature likewise, his leadership qualities are impressive, having organized and managed the event “Technology for all” held on 21 dec 2021 at Chennai. It was received with profound appreciation and enthusiasm by peers and juniors for his efforts.</p>
-            </div>
         </div>
     </section>
 
@@ -189,6 +212,44 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener('click', function(event) {
+            // Check if the clicked element is a button with the class 'bt'
+            if (event.target.classList.contains('bt')) {
+                // Prevent the default action of the anchor tag
+                event.preventDefault();
+                
+                // Find the closest box to the clicked button
+                const box = event.target.closest('.box');
+                
+                // Toggle the 'active' class on the box and its corresponding content
+                box.classList.toggle('active');
+                const content = box.querySelector('.c');
+                const cc = box.querySelector('.pp')
+                content.classList.toggle('active');
+                cc.classList.toggle('active');
+            }
+        });
+    </script>
+    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const introSection = document.getElementById('intro');
+    
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    introSection.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.5 // 50% of the section is in view before the animation starts
+        });
+    
+        observer.observe(introSection);
+    });
+    </script>
              
  </body>
  </html> 
