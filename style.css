@@ -204,14 +204,63 @@ color: white;
     z-index: -1;
 }
 
+
 .main{
-display: flex;
-flex-direction : column;
-/*border : 1px solid white*/
-align-items: center;
-position : absolute;
-top: 10%;
-right : 10;
+    padding-left: 30px;
+    padding-bottom: 500px;
+}
+
+.main p {
+    font-size: 1.7rem;
+    letter-spacing: 6px;
+    font-family: monospace;
+    border-right: 5px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0; /* Initially hidden */
+}
+
+/* Typing animations for each line with delays */
+.text0 {
+    animation: typing 2s steps(12) 3s forwards, cursor 0.5s step-end infinite 2s alternate, hide-cursor 3s 4s forwards;
+}
+
+.text1 {
+    animation: typing 2s steps(10) 5s forwards, cursor 0.5s step-end infinite 2.5s alternate, hide-cursor 5s 6s forwards;
+}
+
+.text2 {
+    animation: typing 2s steps(12) 7s forwards, cursor 0.5s step-end infinite 5s alternate, hide-cursor 7s 8s forwards;
+}
+
+.text3 {
+    animation: typing 2s steps(13) 9s forwards, cursor 0.5s step-end infinite 7.5s alternate
+}
+
+/* Typing effect */
+@keyframes typing {
+    from {
+        width: 0;
+        opacity: 1;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* Blinking cursor */
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Hides the cursor */
+@keyframes hide-cursor {
+    to {
+        border-color: transparent;
+    }
 }
 
 
@@ -242,6 +291,7 @@ flex-direction: column;
 height: 550;
 background: black;
 font-size: 1.2rem;
+padding-bottom: 200px;
 }
 
 .heading:hover{
@@ -315,11 +365,10 @@ color: white;
 
 
 #image-track {
-    padding-top: 200px;
+    padding-top: 100px;
+    padding-bottom: 200px;
     display: flex;
     gap: 4vmin;
-    left: 50%;
-    top: 50%;
     transform: translate(0%, -50%); 
     user-select: none; /* -- Prevent image highlighting -- */
 
@@ -327,10 +376,9 @@ color: white;
 
 .image {
     width: 45vmin;
-    height: 80vmin;
+    height: 40vmin;
     object-fit: cover;
     object-position: center;
-    padding-top: 280px;
 }
 
 /* timeline */ 
@@ -479,21 +527,24 @@ padding-top: 50px;
 
 .head{
     display: flex;
-    color: #ffffff;
+    justify-content: left;
+    color: white;
+    width: 100%;
     font-size: 1.9rem;
 }
 
 .row{
-display: grid;
-grid-template-columns: 1fr; /* Two columns of equal width */
-justify-content: center;
-/*flex-wrap: wrap;*/
-box-sizing: border-box;
-width: 100%;
-height: 1000px;
-padding-left: 140px;
-gap: 50px;
+    padding-top: 60px;
+    display: flex;
+    gap: 45px; /* space between boxes */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+    height: 1000px;
 }
+
 .bt {
     padding: 10px 20px;
     font-size: 17px;
@@ -525,6 +576,7 @@ gap: 50px;
     opacity: 0;
     transition: transform 3s ease, opacity 1s ease;
     transform-style: preserve-3d;
+    transition: background-color 0.5s ease; /* Smooth background transition */
 }
 
 .box::before {
@@ -533,13 +585,54 @@ gap: 50px;
     top: 0;
     left: 0;
     width: 100%;
-    height: 87%;
+    height: 87%; /* Updated to cover entire box */
     border-radius: 15px;
-    background: url('1128121.jpg') no-repeat center/cover;
-    transition: filter 1.3s ease;
-    
+    opacity: 1; /* Fully visible by default */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade and optional transform */
 }
 
+.box:hover::before {
+    opacity: 0; /* Gradually hide the background image */
+    transform: scale(1.05); /* Optional: slight zoom-out effect on hover */
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Hidden initially */
+    opacity: 0; /* Invisible initially */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.box:hover .text {
+    transform: translate(-50%, -50%) scale(1); /* Fully visible */
+    opacity: 1; /* Fade in */
+}
+
+/* When the active class is added, hide the text */
+.text.active {
+    color: transparent;
+    opacity: 0; /* Hide the text */
+    transform: translate(-50%, -50%) scale(0); /* Scale down to hide */
+}
+
+
+/* Specific images for each box */
+#box1::before {
+    background: url('s1.png') no-repeat center/cover;
+}
+
+#box2::before {
+    background: url('s2.png') no-repeat center/cover;
+}
+
+#box3::before {
+    background: url('s3.png') no-repeat center/cover;
+}
 
 
 .box--visible {
@@ -549,6 +642,7 @@ gap: 50px;
 
 .box:hover {
     color: black;
+    background-color: black; /* Turns the background black */
     box-shadow: 0 0 40px rgb(126, 165, 255);
     transition: 1.3s ease, color 1.3s ease;
     border: 1px solid rgb(218, 218, 218);
@@ -568,7 +662,7 @@ gap: 50px;
 
 .c {
     visibility: hidden;
-    color: white;
+    color: rgb(50, 38, 38);
     opacity: 0;
     transform: translateY(30px) rotateY(180deg);
     margin-top: 20px; /* Added margin */
@@ -579,17 +673,14 @@ gap: 50px;
 
 .c.active {
     opacity: 1;
+    color: white;
     visibility: visible;
     transition-delay: 0.5s; /* Delay visibility change */
     transform: translateY(0);
     transform: rotateY(180deg);
 }
 
-.box img {
-    width: 80px;
-    height: 80px;
-    padding: 10px;
-}
+
 
 
 .box a{
@@ -615,12 +706,19 @@ gap: 50px;
 
 }
 
-.pp{
+.pp {
     display: flex;
     margin-top: 27px;
     margin-left: 70px;
-    transition: transform 3s ease, opacity 1s ease;
-    transform-style: preserve-3d;
+    gap: 10px;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Move slightly downward */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+.box:hover .pp {
+    opacity: 1; /* Fully visible on hover */
+    transform: translateY(0); /* Return to original position */
 }
 
 .pp.active{
@@ -851,6 +949,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         align-items: center;
         background-color: black;
         position: sticky;
+        padding-top: 7px;
         top: 0;
         /*z-index: 1001;   */
     }
@@ -867,7 +966,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         font-size: 1.7rem;
         font-style: normal;
         font-weight: bold;
-        width: 120px;
+        width: 150px;
         padding: 8px;
     }
 
@@ -914,35 +1013,64 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
 
     .main{
-        display: flex;
-        flex-direction : column;
-        /*border : 1px solid white*/
-        align-items: center;
-        position : absolute;
-        top: 10%;
+        padding-left: 550px;
+        padding-top: 150px;
     }
 
-    @keyframes slideInFromLeft {
-        0% {
-            transform: translateX(-100%);
-            opacity: 0;
+    .main p {
+        font-size: 1.7rem;
+        letter-spacing: 10px;
+        font-family: monospace;
+        border-right: 5px solid;
+        white-space: nowrap;
+        overflow: hidden;
+        opacity: 0; /* Initially hidden */
+    }
+    
+    /* Typing animations for each line with delays */
+    .text0 {
+        animation: typing 2s steps(12) 3s forwards, cursor 0.5s step-end infinite 2s alternate, hide-cursor 3s 4s forwards;
+    }
+    
+    .text1 {
+        animation: typing 2s steps(10) 5s forwards, cursor 0.5s step-end infinite 2.5s alternate, hide-cursor 5s 6s forwards;
+    }
+    
+    .text2 {
+        animation: typing 2s steps(12) 7s forwards, cursor 0.5s step-end infinite 5s alternate, hide-cursor 7s 8s forwards;
+    }
+    
+    .text3 {
+        animation: typing 2s steps(13) 9s forwards, cursor 0.5s step-end infinite 7.5s alternate
+    }
+    
+    /* Typing effect */
+    @keyframes typing {
+        from {
+            width: 0;
+            opacity: 1;
         }
-        100% {
-            transform: translateX(0);
+        to {
+            width: 100%;
             opacity: 1;
         }
     }
     
-    .heading {
-        display: flex;
-        padding-left: 150px;
-        font-family: century;
-        color: lightblue;
-        font-size: 1.7rem;
-        text-align: center;
-        animation: slideInFromLeft 4.7s ease-out;
+    /* Blinking cursor */
+    @keyframes cursor {
+        50% {
+            border-color: transparent;
+        }
     }
-
+    
+    /* Hides the cursor */
+    @keyframes hide-cursor {
+        to {
+            border-color: transparent;
+        }
+    }
+    
+    
     .btn{
         padding : 7px 10px;
         background-color: transparent;
@@ -1025,11 +1153,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     
     #image-track {
-        padding-top: 100px;
         display: flex;
         gap: 2.5vmin;
-        transform: translate(0%, -50%); 
+        position: relative;
         user-select: none; /* -- Prevent image highlighting -- */
+        padding-bottom: 150px;
     
     }
     
@@ -1040,6 +1168,8 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         object-position: center;
         padding-top: 280px;
     }
+
+
     
     /*  timeline 
     #timeline{
@@ -1172,15 +1302,16 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         .row{
             padding-top: 60px;
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1.5fr; /* Two columns of equal width */
-            gap: 10px; /* Adjust gap as needed */
+            display: flex;
+            gap: 35px; /* space between boxes */
+            align-items: center;
             justify-content: center;
-            /*flex-wrap: wrap;*/
+            flex-wrap: wrap;
             box-sizing: border-box;
             width: 100%;
             height: 1000px;
         }
+
         .bt {
             padding: 10px 20px;
             font-size: 17px;
@@ -1202,8 +1333,8 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             display: flex;
             flex-direction: column;
             bottom: 0;
-            width: 330px;
-            height: 450px;
+            width: 300px;
+            height: 400px;
             font-size: 1rem;
             border: 1px solid black;
             padding: 15px;
@@ -1212,6 +1343,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             opacity: 0;
             transition: transform 3s ease, opacity 1s ease;
             transform-style: preserve-3d;
+            transition: background-color 0.5s ease; /* Smooth background transition */
         }
         
         .box::before {
@@ -1220,13 +1352,54 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             top: 0;
             left: 0;
             width: 100%;
-            height: 87%;
+            height: 87%; /* Updated to cover entire box */
             border-radius: 15px;
-            background: url('1128121.jpg') no-repeat center/cover;
-            transition: filter 1.3s ease;
-            
+            opacity: 1; /* Fully visible by default */
+            transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade and optional transform */
         }
         
+        .box:hover::before {
+            opacity: 0; /* Gradually hide the background image */
+            transform: scale(1.05); /* Optional: slight zoom-out effect on hover */
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0); /* Hidden initially */
+            opacity: 0; /* Invisible initially */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .box:hover .text {
+            transform: translate(-50%, -50%) scale(1); /* Fully visible */
+            opacity: 1; /* Fade in */
+        }
+        
+        /* When the active class is added, hide the text */
+        .text.active {
+            color: transparent;
+            opacity: 0; /* Hide the text */
+            transform: translate(-50%, -50%) scale(0); /* Scale down to hide */
+        }
+        
+        
+        /* Specific images for each box */
+        #box1::before {
+            background: url('s1.png') no-repeat center/cover;
+        }
+        
+        #box2::before {
+            background: url('s2.png') no-repeat center/cover;
+        }
+
+        #box3::before {
+            background: url('s3.png') no-repeat center/cover;
+        }
         
         
         .box--visible {
@@ -1236,6 +1409,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         .box:hover {
             color: black;
+            background-color: black; /* Turns the background black */
             box-shadow: 0 0 40px rgb(126, 165, 255);
             transition: 1.3s ease, color 1.3s ease;
             border: 1px solid rgb(218, 218, 218);
@@ -1255,7 +1429,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         .c {
             visibility: hidden;
-            color: white;
+            color: rgb(50, 38, 38);
             opacity: 0;
             transform: translateY(30px) rotateY(180deg);
             margin-top: 20px; /* Added margin */
@@ -1266,17 +1440,14 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         .c.active {
             opacity: 1;
+            color: white;
             visibility: visible;
             transition-delay: 0.5s; /* Delay visibility change */
             transform: translateY(0);
             transform: rotateY(180deg);
         }
         
-        .box img {
-            width: 80px;
-            height: 80px;
-            padding: 10px;
-        }
+
         
         
         .box a{
@@ -1302,13 +1473,19 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         }
         
-        .pp{
+        .pp {
             display: flex;
-            margin-top: 85px;
-            margin-left: 80px;
+            margin-top: 27px;
+            margin-left: 70px;
             gap: 10px;
-            transition: transform 3s ease, opacity 1s ease;
-            transform-style: preserve-3d;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(20px); /* Move slightly downward */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+        }
+        
+        .box:hover .pp {
+            opacity: 1; /* Fully visible on hover */
+            transform: translateY(0); /* Return to original position */
         }
         
         .pp.active{
@@ -1363,9 +1540,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         font-size: 20px;
         width: 90px;
         height: 30px;
+        align-items: center;
         border: none;
         outline: none;
     }
+    
     #send:hover{
         cursor: pointer;
         background: lightblue;
