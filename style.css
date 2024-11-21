@@ -54,7 +54,7 @@ html{
   margin: auto;
   text-align: center;
   width: 100%;
-  height: 100px;
+  height: 100z5;
   line-height: 100px;
 }
 
@@ -133,7 +133,7 @@ html{
     display: flex;
     background-color: transparent;
     list-style: none;
-    margin: 15px 0;
+    margin: 5px 0;
     padding: 18px;
 }
 
@@ -517,17 +517,18 @@ color: white;
 
 /* service section*/
 #services{
-display: flex;
-flex-direction: column;
-background-color: black;
-height: 3100px;
-font-size: 1.5rem;
-padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 2500px;
+    font-size: 1.5rem;
+    padding-top: 50px;
 }
 
 .head{
     display: flex;
     justify-content: left;
+    align-items: center;
     color: white;
     width: 100%;
     font-size: 1.9rem;
@@ -536,7 +537,7 @@ padding-top: 50px;
 .row{
     padding-top: 60px;
     display: flex;
-    gap: 45px; /* space between boxes */
+    gap: 55px; /* space between boxes */
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -733,18 +734,17 @@ flex-direction: column;
 box-sizing: border-box;
 background-color: black;
 color: white;
-height: 499px;
+height: auto;
+padding: 20px;
 font-size: 1.2rem;
 }
 
 .form{
     padding-top: 19px;
-display: flex;
-flex-direction: column;
-box-sizing: border-box;
-align-items: center;
-margin: 20px 0px;
-height: 530px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
 }
 
 .input{
