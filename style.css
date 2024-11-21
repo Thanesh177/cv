@@ -131,6 +131,8 @@ html{
 
 .navbar ul {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: transparent;
     list-style: none;
     margin: 5px 0;
@@ -139,9 +141,10 @@ html{
 
 .navbar ul li {
     font-family: century;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-style: normal;
-    font-weight: bold;
+    margin: 10px 0;
+
 }
 
 .navbar ul li a {
@@ -163,8 +166,8 @@ html{
     will-change: 10%;
     margin: 30px;
     border-radius: 10px;
-    font-size: 20px;
-    width: 100px;
+    font-size: 1.2rem;
+    width: 80%;
     height: 40px;
     border: none;
     outline: none;
@@ -182,9 +185,11 @@ html{
 display : flex;
 flex-direction : column;
 /* background-color: black;*/
-height: 780px;
+height: auto;
 justify-content: center;
 align-items: center;
+padding: 20px;
+justify-content: flex-start;
 color: white;
 }
 
@@ -198,21 +203,16 @@ color: white;
     background: 
         url('IMG-20240702-WA0012-2.png') no-repeat center center,
         rgba(0, 0, 0, 1); /* Black background color */
-    background-size: 100%; /* Adjust the percentage as needed */
-    height: 100%;
+    background-size: cover; /* Adjust the percentage as needed */
+    height: 60%; /* Ensure background doesn't overflow */
     width: 100%;
     z-index: -1;
 }
 
 
-.main{
-    padding-left: 30px;
-    padding-bottom: 500px;
-}
-
 .main p {
-    font-size: 1.7rem;
-    letter-spacing: 6px;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
     font-family: monospace;
     border-right: 5px solid;
     white-space: nowrap;
