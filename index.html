@@ -43,15 +43,16 @@
           <span class="loading-text-words">G</span>
         </div>
       </div>
-    <nav class="navbar">
-       <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#portfolio">Languages</a></li>
-            <li><a href="#services">Service</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="cv.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
-       </ul>
-    </nav>
+
+    <div class="navbar">
+        <button id="menuToggle">Menu</button>
+        <ul class="hidden">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
     <section id ="home">
         <div class="main">
@@ -99,7 +100,7 @@
       
 
     <section id="timeline">
-        <h1 class="time" style="text-align: center; color: white">TIMELINE</h1>
+        <h1 class="time" style="text-align: center; color: white;">TIMELINE;</h1>
         <div class="container left">
             <img src="">
             <div class="text-box">
@@ -277,6 +278,17 @@
         observer.observe(introSection);
     });
     </script>
-             
+    
+    <script>
+        // Select the button and the menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.querySelector('.navbar ul');
+
+    // Toggle the "show" class when the button is clicked
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+    });
+
+    </script>
  </body>
  </html> 

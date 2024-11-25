@@ -54,7 +54,7 @@ html{
   margin: auto;
   text-align: center;
   width: 100%;
-  height: 100z5;
+  height: 100%;
   line-height: 100px;
 }
 
@@ -115,82 +115,84 @@ html{
     filter: blur(4px);
   }
 }
+/* Button Styles */
+#menuToggle {
+    padding-top: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
 
-/*Navbar Section*/
+/* Navbar Container */
 .navbar {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     position: sticky;
     top: 0;
     background-color: #000;
     width: 100%;
-    /*z-index: 1001;   */
+    z-index: 1000;
 }
 
-
+/* Menu Styles */
 .navbar ul {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    background-color: transparent;
     list-style: none;
-    margin: 5px 0;
-    padding: 18px;
+    margin: 0;
+    background-color: #111;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: scale(0.8);
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
 }
 
+/* Menu Items */
 .navbar ul li {
     font-family: century;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-style: normal;
-    margin: 10px 0;
-
+    margin: 10px;
 }
 
 .navbar ul li a {
     text-decoration: none;
-    color: #ffffff; /* Dark gray color for text */
-    padding: 8px 20px;
+    color: #ffffff;
+    padding: 10px ;
     transition: all 0.5s ease;
 }
 
 .navbar ul li a:hover {
-    color: rgb(128, 222, 230); /* Dark gray text on hover */
-    box-shadow: 0 0 10px rgba(254, 255, 255, 0.3); /* Subtle shadow on hover */
-    opacity: .59;
-    transition: .5s;
+    color: rgb(128, 222, 230);
+    box-shadow: 0 0 10px rgba(254, 255, 255, 0.3);
+    opacity: 0.59;
 }
 
-.n{
-    padding: 5px;
-    will-change: 10%;
-    margin: 30px;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    width: 80%;
-    height: 40px;
-    border: none;
-    outline: none;
-    box-shadow: 3px 3px 7px #3c3c3d, -3px -3px 7px #3c3c3d;
+/* Show the menu when the 'show' class is added */
+.navbar ul.show {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto; /* Allow interaction when visible */
 }
 
-.n:hover{
-    border: 1px solid rgb(251, 251, 255);
-    box-shadow: 0 0 10px rgba(254, 255, 255, 0.3); /* Subtle shadow on hover */
 
-}
 /*HomeSection*/
-
 #home{
-display : flex;
-flex-direction : column;
-/* background-color: black;*/
-height: auto;
-justify-content: center;
-align-items: center;
-padding: 20px;
-justify-content: flex-start;
-color: white;
+    color: black;
+    display : flex;
+    height: auto;
+    width: 100%;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-start;
+    color: white;
 }
 
 #home::before {
@@ -204,15 +206,17 @@ color: white;
         url('IMG-20240702-WA0012-2.png') no-repeat center center,
         rgba(0, 0, 0, 1); /* Black background color */
     background-size: cover; /* Adjust the percentage as needed */
-    height: 60%; /* Ensure background doesn't overflow */
+    height:35%; /* Ensure background doesn't overflow */
     width: 100%;
     z-index: -1;
 }
 
 
+
 .main p {
-    font-size: 1.3rem;
-    letter-spacing: 4px;
+    font-size: 1rem;
+    padding-left: 210px;
+    letter-spacing: 2px;
     font-family: monospace;
     border-right: 5px solid;
     white-space: nowrap;
@@ -236,6 +240,7 @@ color: white;
 .text3 {
     animation: typing 2s steps(13) 9s forwards, cursor 0.5s step-end infinite 7.5s alternate
 }
+
 
 /* Typing effect */
 @keyframes typing {
@@ -264,34 +269,17 @@ color: white;
 }
 
 
-.btn{
-padding : 5px 10px;
-background-color: transparent;
-border : 0.1px solid white;
-border-radius: 10px;
-color: rgb(108, 138, 141);
-outline: none;
-font-size: 1.5rem;
-transition: 0.5s ease;
-justify-content: center;
-}
 
-.btn:hover{
-cursor: pointer;
-background-color: rgb(255, 255, 255);
-color: black;
-box-shadow: 0 0 40px rgb(126, 165, 255);
-font-weight: bold;
-}
 
 /* about section*/
 #about{
-display: flex;
-flex-direction: column;
-height: 550;
-background: black;
-font-size: 1.2rem;
-padding-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    height: 550;
+    width: 100%;
+    background: black;
+    font-size: 1.2rem;
+    padding-bottom: 200px;
 }
 
 .heading:hover{
@@ -313,8 +301,9 @@ padding: 0px 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 100%;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 35px;
     padding-top: 125px;
     transition: opacity 1s ease-in-out; /* Smooth transition for the appearance */
@@ -325,9 +314,9 @@ padding: 0px 20px;
 }
 
 #intro h2{
-font-size: 2rem;
-margin-bottom: 10px;
-color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white;
 }
 
 /* portfolio section*/
@@ -386,12 +375,13 @@ color: white;
     background-color: black;
     color: #ffffff;
     position: relative;
+    overflow: hidden;
 }
 
+
 .container{
-    padding: 10px 50px;
+    padding: 10px;
     position: relative;
-    width: 50%;
     animation: movedown 27s linear forwards;
     opacity: 0;
     transform: translateY(20px); /* Move container up initially */
@@ -430,13 +420,12 @@ color: white;
 }
 
 .text-box{
-    padding: 20px 30px;
+    padding: 10px 20px;
     background: transparent;
     position: relative;
     border-radius: 25px;
     box-shadow: 2px 2px 4px #a7b9fd, -2px -2px 4px #a7b9fd;
-    font-size: 20px;
-    width: 100%;
+    width: 50%;
     border: 1px solid black;
 
 }
@@ -450,11 +439,12 @@ color: white;
 }
 .left{
     left: 0;
-    padding-left: 50px;
+    padding-right: 50px;
 }
 .right{
     left: 50%;
-    padding-left: 70px;
+    padding-right: 30px;
+
 }
 
 #timeline::after{
@@ -479,7 +469,7 @@ color: white;
     }
 }
 .text-box h2{
-    font-weight: 600;
+    font: 1.2em sans-serif;
 }
 
 .text-box small{
@@ -520,7 +510,8 @@ color: white;
     display: flex;
     flex-direction: column;
     background-color: black;
-    height: 2500px;
+    height: auto;
+    width: 100%;
     font-size: 1.5rem;
     padding-top: 50px;
 }
@@ -537,13 +528,13 @@ color: white;
 .row{
     padding-top: 60px;
     display: flex;
-    gap: 55px; /* space between boxes */
+    gap: 50px; /* space between boxes */
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     box-sizing: border-box;
     width: 100%;
-    height: 1000px;
+    height: auto;
 }
 
 .bt {
@@ -567,8 +558,8 @@ color: white;
     display: flex;
     flex-direction: column;
     bottom: 0;
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 390px;
     font-size: 1rem;
     border: 1px solid black;
     padding: 15px;
@@ -586,7 +577,7 @@ color: white;
     top: 0;
     left: 0;
     width: 100%;
-    height: 87%; /* Updated to cover entire box */
+    height: 85%; /* Updated to cover entire box */
     border-radius: 15px;
     opacity: 1; /* Fully visible by default */
     transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade and optional transform */
@@ -666,7 +657,7 @@ color: white;
     color: rgb(50, 38, 38);
     opacity: 0;
     transform: translateY(30px) rotateY(180deg);
-    margin-top: 20px; /* Added margin */
+    height: 320px;
     padding: 10px;
     text-align: justify;
     transition: transform 1s ease, opacity 1.3s ease, visibility 0s 1.3s; /* visibility delay */
@@ -709,17 +700,17 @@ color: white;
 
 .pp {
     display: flex;
-    margin-top: 27px;
-    margin-left: 70px;
+    margin-left: 37px;
     gap: 10px;
     opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Move slightly downward */
+    transform: translateY(30px); /* Move slightly downward */
     transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
 }
 
 .box:hover .pp {
     opacity: 1; /* Fully visible on hover */
     transform: translateY(0); /* Return to original position */
+
 }
 
 .pp.active{
@@ -811,6 +802,7 @@ background: linear-gradient(to top, rgb(154, 217, 238) 50%, black 50%);
 background-size: 100% 200%;
 transition: all .7s;
 }
+
 .oi a:hover{
 background-position: left bottom;
 color: black;
@@ -1279,6 +1271,10 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: none;
     }
 
+    #menuToggle {
+        display: none;
+    }
+
 
     /* service section*/
     #services{
@@ -1287,7 +1283,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         flex-direction: column;
         padding: 300px;
         background-color: black;
-        height: 1280px;
+        height: auto;
         font-size: 1.5rem;
         width: 100%;
         }
@@ -1309,7 +1305,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             flex-wrap: wrap;
             box-sizing: border-box;
             width: 100%;
-            height: 1000px;
+            height: auto;
         }
 
         .bt {
