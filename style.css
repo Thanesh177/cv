@@ -184,8 +184,9 @@ html{
 /*HomeSection*/
 #home{
     color: black;
+    background-color: black;
     display : flex;
-    height: auto;
+    height: 60vh;
     width: 100%;
     flex-direction : column;
     justify-content: center;
@@ -198,9 +199,7 @@ html{
 #home::before {
     content: "";
     position: absolute; /* Use absolute positioning */
-    top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
     background: 
         url('IMG-20240702-WA0012-2.png') no-repeat center center,
@@ -208,39 +207,26 @@ html{
     background-size: cover; /* Adjust the percentage as needed */
     height:35%; /* Ensure background doesn't overflow */
     width: 100%;
-    z-index: -1;
 }
 
-
+.main{
+    padding-left: 20px;
+    padding-top: 360px;
+}
 
 .main p {
-    font-size: 1rem;
-    padding-left: 210px;
-    letter-spacing: 2px;
+    font-size: 1.5rem;
+    letter-spacing: 10px;
     font-family: monospace;
     border-right: 5px solid;
     white-space: nowrap;
     overflow: hidden;
-    opacity: 0; /* Initially hidden */
+    display: inline-block;
+    width: 0;
+    opacity: 1;
+    animation: typing 2s steps(20, end) infinite alternate, 
+               cursor 0.5s step-end infinite;
 }
-
-/* Typing animations for each line with delays */
-.text0 {
-    animation: typing 2s steps(12) 3s forwards, cursor 0.5s step-end infinite 2s alternate, hide-cursor 3s 4s forwards;
-}
-
-.text1 {
-    animation: typing 2s steps(10) 5s forwards, cursor 0.5s step-end infinite 2.5s alternate, hide-cursor 5s 6s forwards;
-}
-
-.text2 {
-    animation: typing 2s steps(12) 7s forwards, cursor 0.5s step-end infinite 5s alternate, hide-cursor 7s 8s forwards;
-}
-
-.text3 {
-    animation: typing 2s steps(13) 9s forwards, cursor 0.5s step-end infinite 7.5s alternate
-}
-
 
 /* Typing effect */
 @keyframes typing {
@@ -260,6 +246,7 @@ html{
         border-color: transparent;
     }
 }
+
 
 /* Hides the cursor */
 @keyframes hide-cursor {
@@ -364,10 +351,11 @@ padding: 0px 20px;
 }
 
 .image {
-    width: 45vmin;
-    height: 40vmin;
+    width: 30vmin;
+    height: 30vmin;
     object-fit: cover;
     object-position: center;
+    border-radius: 50%;
 }
 
 /* timeline */ 
@@ -380,12 +368,11 @@ padding: 0px 20px;
 
 
 .container{
-    padding: 10px;
+    padding: 2px;
+    width: 80%;
     position: relative;
     animation: movedown 27s linear forwards;
     opacity: 0;
-    transform: translateY(20px); /* Move container up initially */
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .container.visible {
@@ -426,24 +413,22 @@ padding: 0px 20px;
     border-radius: 25px;
     box-shadow: 2px 2px 4px #a7b9fd, -2px -2px 4px #a7b9fd;
     width: 50%;
+    height: auto;
     border: 1px solid black;
 
 }
 .text-box:hover{
     color: white;
     box-shadow: 0 0 40px rgb(126, 165, 255);
-    transition: 0.35s ease;
+    transition: 0.55s ease;
     border: 1px solid white;
-    font-size: 1.3rem;
 
 }
 .left{
-    left: 0;
-    padding-right: 50px;
+    left: 5%;
 }
 .right{
-    left: 50%;
-    padding-right: 30px;
+    left: 55%;
 
 }
 
@@ -452,7 +437,7 @@ padding: 0px 20px;
     position: absolute;
     width: 5px;
     height: 100%;
-    background: rgb(224, 224, 224);
+    background: rgb(113, 35, 186);
     top: 0;
     left: 50%;
     margin-left: -3px;
@@ -504,6 +489,143 @@ padding: 0px 20px;
     }
 }
 */
+
+/* Action section*/
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    padding-left: 80px;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    padding-top: 70px;
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
+}
+.banner .slider .item img{
+    width: 180%;
+    height: 180%;
+    object-fit: cover;
+}
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+.banner .content h1{
+    font-family: 'ICA Rubrik';
+    font-size: 16em;
+    line-height: 1em;
+    color: #25283B;
+    position: relative;
+}
+.banner .content h1::after{
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2;
+    color: transparent;
+}
+.banner .content .author{
+    font-family: Poppins;
+    text-align: right;
+    max-width: 200px;
+}
+.banner .content h2{
+    font-size: 3em;
+}
+.banner .content .model{
+    background-color: #000;
+    background-image: url(model.png);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 1;
+}
+
+
+.banner .slider:hover {
+    animation-play-state: paused;
+}
+
+/* Stop rotation when .paused class is added (when clicked) */
+.banner .slider.paused {
+    animation-play-state: paused;
+}
+
+/* Pop-out effect when clicked */
+.banner .slider .item.active {
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(350px) scale(0.9); /* Pops out */
+    transition: transform 0.5s ease-in-out;
+    z-index: 100;
+}
+
+/* Optional: Add glow effect when clicked */
+.banner .slider .item.active img {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    filter: brightness(1.2);
+}
+
+.banner .slider{
+    width: 60px;
+    height: 100px;
+    left: calc(50% - 50px);
+}
+
+.banner .slider .item{
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(180px);
+}
+.banner .content h1{
+    font-size: 5em;
+}
+
+
 
 /* service section*/
 #services{
@@ -979,10 +1101,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     /*HomeSection*/
 
     #home{
+        background-color: black;
         display : flex;
         flex-direction : column;
     /* background-color: black;*/
-        height: 649px;
+        height: 60vh;
         justify-content: center;
         align-items: center;
         color: white;
@@ -991,49 +1114,33 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     #home::before {
         content: "";
         position: absolute; /* Use absolute positioning */
-        top: 10%;
         right: 0;
-        bottom: 0;
         left: 0;
         background: 
             url('IMG-20240702-WA0012-2.png') no-repeat center center,
             rgba(0, 0, 0, 1); /* Black background color */
         background-size: 50%; /* Adjust the percentage as needed */
-        height: 780px;
+        height: 60vh;
         width: 100%;
-        z-index: -1;
     }
 
-    .main{
-        padding-left: 550px;
-        padding-top: 150px;
+    .main {
+        padding-left: 500px;
+        padding-top: 10px;
     }
-
+    
     .main p {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         letter-spacing: 10px;
         font-family: monospace;
         border-right: 5px solid;
         white-space: nowrap;
         overflow: hidden;
-        opacity: 0; /* Initially hidden */
-    }
-    
-    /* Typing animations for each line with delays */
-    .text0 {
-        animation: typing 2s steps(12) 3s forwards, cursor 0.5s step-end infinite 2s alternate, hide-cursor 3s 4s forwards;
-    }
-    
-    .text1 {
-        animation: typing 2s steps(10) 5s forwards, cursor 0.5s step-end infinite 2.5s alternate, hide-cursor 5s 6s forwards;
-    }
-    
-    .text2 {
-        animation: typing 2s steps(12) 7s forwards, cursor 0.5s step-end infinite 5s alternate, hide-cursor 7s 8s forwards;
-    }
-    
-    .text3 {
-        animation: typing 2s steps(13) 9s forwards, cursor 0.5s step-end infinite 7.5s alternate
+        display: inline-block;
+        width: 0;
+        opacity: 1;
+        animation: typing 2s steps(20, end) infinite alternate, 
+                   cursor 0.5s step-end infinite;
     }
     
     /* Typing effect */
@@ -1054,6 +1161,9 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             border-color: transparent;
         }
     }
+    
+    
+
     
     /* Hides the cursor */
     @keyframes hide-cursor {
@@ -1149,16 +1259,15 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         gap: 2.5vmin;
         position: relative;
         user-select: none; /* -- Prevent image highlighting -- */
-        padding-bottom: 150px;
     
     }
     
     .image {
-        width: 35vmin;
-        height: 60vmin;
+        width: 30vmin;
+        height: 30vmin;
         object-fit: cover;
         object-position: center;
-        padding-top: 280px;
+        border-radius: 50%;
     }
 
 
@@ -1299,7 +1408,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         .row{
             padding-top: 60px;
             display: flex;
-            gap: 35px; /* space between boxes */
+            gap: 65px; /* space between boxes */
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
@@ -1329,7 +1438,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             display: flex;
             flex-direction: column;
             bottom: 0;
-            width: 300px;
+            width: 270px;
             height: 400px;
             font-size: 1rem;
             border: 1px solid black;
@@ -1472,7 +1581,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         .pp {
             display: flex;
             margin-top: 27px;
-            margin-left: 70px;
+            margin-left: 50px;
             gap: 10px;
             opacity: 0; /* Initially hidden */
             transform: translateY(20px); /* Move slightly downward */
@@ -1489,7 +1598,158 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         }
 
-        
+
+    /*Action*/
+    @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+    @import url('https://fonts.cdnfonts.com/css/poppins');
+
+    .banner{
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .banner .slider{
+        position: absolute;
+        width: 100px;
+        height: 120px;
+        top: 10%;
+        left: calc(50% - 100px);
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+        animation: autoRun 20s linear infinite;
+        z-index: 20;
+    }
+    @keyframes autoRun{
+        from{
+            transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+        }to{
+            transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+        }
+    }
+
+    .banner .slider .item{
+        position: absolute;
+        inset: 0 0 0 0;
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(550px);
+    }
+    .banner .slider .item img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Stop rotation when .paused class is added */
+    /* Pause rotation when hovered */
+    .banner .slider:hover {
+        animation-play-state: paused;
+    }
+
+    /* Stop rotation when .paused class is added (when clicked) */
+    .banner .slider.paused {
+        animation-play-state: paused;
+    }
+
+    /* Pop-out effect when clicked */
+    .banner .slider .item.active {
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(350px) scale(1); /* Pops out */
+        transition: transform 0.5s ease-in-out;
+        z-index: 100;
+    }
+
+    /* Optional: Add glow effect when clicked */
+    .banner .slider .item.active img {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        filter: brightness(1.2);
+    }
+
+
+
+
+    .banner .content{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1400px, 100vw);
+        height: max-content;
+        padding-bottom: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1;
+    }
+    .banner .content h1{
+        font-family: 'ICA Rubrik';
+        font-size: 16em;
+        line-height: 1em;
+        color: #25283B;
+        position: relative;
+    }
+    .banner .content h1::after{
+        position: absolute;
+        inset: 0 0 0 0;
+        content: attr(data-content);
+        z-index: 2;
+        -webkit-text-stroke: 2px #d2d2d2;
+        color: transparent;
+    }
+    .banner .content .author{
+        font-family: Poppins;
+        text-align: right;
+        max-width: 200px;
+    }
+    .banner .content h2{
+        font-size: 3em;
+    }
+    .banner .content .model{
+        background-image: url(model.png);
+        width: 100%;
+        height: 75vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-size: auto 130%;
+        background-repeat: no-repeat;
+        background-position: top center;
+        z-index: 1;
+    }
+
+        .banner .slider{
+            width: 160px;
+            height: 200px;
+            left: calc(50% - 80px);
+        }
+        .banner .slider .item{
+            transform: 
+                rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                translateZ(300px);
+        }
+        .banner .content h1{
+            text-align: center;
+            width: 100%;
+            text-shadow: 0 10px 20px #000;
+            font-size: 7em;
+        }
+        .banner .content .author{
+            color: #fff;
+            padding: 20px;
+            text-shadow: 0 10px 20px #000;
+            z-index: 2;
+            max-width: unset;
+            width: 100%;
+            text-align: center;
+            padding: 0 30px;
+        }
+
+
     /* contact section*/
     #contact{
         display: flex;
