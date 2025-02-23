@@ -3,6 +3,24 @@ const b = document.querySelectorAll(".m");
 const o = document.querySelectorAll(".o");
 const c = document.querySelectorAll(".box");
 
+document.addEventListener("DOMContentLoaded", function () {
+    const intro = document.querySelector("#intro");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        },
+        { threshold: 0.3 } // Triggers when 30% of the element is visible
+    );
+
+    observer.observe(intro);
+});
+
+
 document.addEventListener("scroll", function(){ 
     paragraphs.forEach((paragraph) => { 
         if(isInview(paragraph)){ 
@@ -53,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 items.forEach(el => el.classList.remove("active")); // Remove pop-out
                 isPaused = false;
             }
+    
 
             // Prevent click from propagating to window
             event.stopPropagation();
@@ -67,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
             isPaused = false;
         }
     });
+
 });
 
 //typing effect
@@ -94,4 +114,3 @@ function isInview(element) {
          rect.top < (window.innerHeight - 150 || document.documentElement.clientHeight - 150) 
     ); 
 }
-

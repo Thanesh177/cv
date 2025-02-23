@@ -134,7 +134,7 @@ html{
     top: 0;
     background-color: #000;
     width: 100%;
-    z-index: 1000;
+    z-index: 100000;
 }
 
 /* Menu Styles */
@@ -357,6 +357,19 @@ padding: 0px 20px;
     object-position: center;
     border-radius: 50%;
 }
+.image.active {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2) !important;
+  }
+
+.image:hover {
+transform: scale(1) !important;
+filter: brightness(1) !important;
+}
+/* Dim non-active images */
+.image.dim {
+    filter: brightness(0.6);
+}
 
 /* timeline */ 
 #timeline{
@@ -530,7 +543,7 @@ padding: 0px 20px;
         translateZ(550px);
 }
 .banner .slider .item img{
-    width: 180%;
+    width: 140%;
     height: 180%;
     object-fit: cover;
 }
@@ -590,25 +603,56 @@ padding: 0px 20px;
     animation-play-state: paused;
 }
 
-/* Stop rotation when .paused class is added (when clicked) */
-.banner .slider.paused {
-    animation-play-state: paused;
-}
+    /* Stop rotation when hovered */
+    .banner .slider:hover {
+        animation-play-state: paused;
+    }
+    
+    /* When the slider is hovered, dim all its items */
+    .banner .slider:hover .item {
+        filter: brightness(0.5);
+        transition: filter 0.5s ease-in-out;
+    }
 
-/* Pop-out effect when clicked */
-.banner .slider .item.active {
-    transform: 
-        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(350px) scale(0.9); /* Pops out */
-    transition: transform 0.5s ease-in-out;
-    z-index: 100;
-}
+    /* When an individual item is hovered, override to brighten it */
+    .banner .slider .item:hover {
+        filter: brightness(1.2);
+        transition: filter 0.5s ease-in-out;
+    }
 
-/* Optional: Add glow effect when clicked */
-.banner .slider .item.active img {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-    filter: brightness(1.2);
-}
+    .banner .slider .item{
+        filter: brightness(1);
+        transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+    /* Stop rotation when .paused class is added (e.g. when clicked) */
+    .banner .slider.paused {
+        animation-play-state: paused;
+    }
+
+    /* Pop-out effect when clicked */
+    .banner .slider .item.active {
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(150px) scale(1.2); /* Pops out */
+        transition: transform 0.5s ease-in-out;
+        z-index: 100;
+
+    }
+
+    /* Make the active item much brighter */
+    .banner .slider .item.active img {
+        box-shadow: 0 0 40px rgb(134, 59, 238);
+        filter: brightness(1);
+    }
+
+    /* When hovering (or when paused) and an item is active, dim all non-active items */
+    .banner .slider.paused .item:not(.active) img {
+        filter: brightness(0.6);
+    }
+    
+
+
 
 .banner .slider{
     width: 60px;
@@ -861,17 +905,17 @@ font-size: 1.2rem;
 }
 
 .input{
-padding: 12px;
-margin: 7px;
-width: 55%;
-height: 40px;
-font-size: 16px;
-border: none;
-outline: none;
+    padding: 12px;
+    margin: 7px;
+    width: 65%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    outline: none;
 }
 
 #msg{
-width: 55%;
+width: 65%;
 height: 27%;
 padding: 10px;
 margin: 7px;
@@ -1199,8 +1243,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         background: black;
     }
-
-
     #intro {
         opacity: 0; /* Initially invisible */
         display: flex;
@@ -1212,14 +1254,15 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         padding: 200px;
         width: 100%;
         height: 70vh;
-        transition: opacity 1s ease-in-out; /* Smooth transition for the appearance */
+        clip-path: inset(50% 50% 50% 50%); /* Start fully hidden */
+        transition: opacity 1.5s ease-in-out, clip-path 1.5s ease-in-out; /* Smooth reveal effect */
     }
     
     #intro.visible {
-        opacity: 1; /* Make visible when the 'visible' class is added */
+        opacity: 1; /* Make visible */
+        clip-path: inset(0 0 0 0); /* Reveal content */
     }
-
-
+    
 
     /* portfolio section*/
     #portfolio {
@@ -1247,29 +1290,34 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
     
     
-    
-    .o--visible{
-        transform: translateY(0);
-        opacity: 1;
-    }
-    
-    
     #image-track {
         display: flex;
         gap: 2.5vmin;
         position: relative;
-        user-select: none; /* -- Prevent image highlighting -- */
-    
+        user-select: none; /* Prevent image highlighting */
     }
     
     .image {
-        width: 30vmin;
-        height: 30vmin;
+        width: 20vmin;
+        height: 20vmin;
         object-fit: cover;
         object-position: center;
         border-radius: 50%;
+        filter: brightness(0.75);
+        transition: transform 0.3s ease, filter 0.3s ease;
     }
+    
+    /* Active image pops out with increased brightness and scale */
+    .image.active {
+        transform: scale(1.0) !important;
+        filter: brightness(1.2) !important;
+      }
 
+
+    .image:hover {
+        transform: scale(1.1) !important;
+        filter: brightness(1.1) !important;
+    }
 
     
     /*  timeline 
@@ -1603,9 +1651,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
     @import url('https://fonts.cdnfonts.com/css/poppins');
 
+
+
     .banner{
         width: 100%;
-        height: 100vh;
+        height: 90vh;
         background-color: #000;
         text-align: center;
         overflow: hidden;
@@ -1615,7 +1665,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         position: absolute;
         width: 100px;
         height: 120px;
-        top: 10%;
+        top: 5%;
         left: calc(50% - 100px);
         transform-style: preserve-3d;
         transform: perspective(1000px);
@@ -1637,19 +1687,36 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
             translateZ(550px);
     }
+
     .banner .slider .item img{
-        width: 100%;
-        height: 100%;
+        width: 94%;
+        height: 98%;
         object-fit: cover;
     }
 
-    /* Stop rotation when .paused class is added */
-    /* Pause rotation when hovered */
+    
+    /* When the slider is hovered, dim all its items */
+    .banner .slider:hover .item {
+        filter: brightness(0.5);
+        transition: filter 0.5s ease-in-out;
+    }
+
+    /* When an individual item is hovered, override to brighten it */
+    .banner .slider .item:hover {
+        filter: brightness(1.2);
+        transition: filter 0.5s ease-in-out;
+    }
+
+    .banner .slider .item{
+        filter: brightness(1);
+        transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
     .banner .slider:hover {
         animation-play-state: paused;
     }
 
-    /* Stop rotation when .paused class is added (when clicked) */
+    /* Stop rotation when .paused class is added (e.g. when clicked) */
     .banner .slider.paused {
         animation-play-state: paused;
     }
@@ -1661,14 +1728,21 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             translateZ(350px) scale(1); /* Pops out */
         transition: transform 0.5s ease-in-out;
         z-index: 100;
+
+        box-shadow: 0 0 40px rgb(134, 59, 238);
     }
 
-    /* Optional: Add glow effect when clicked */
+    /* Make the active item much brighter */
     .banner .slider .item.active img {
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-        filter: brightness(1.2);
+        box-shadow: 0 0 40px rgb(134, 59, 238);
+        filter: brightness(1);
     }
 
+    /* When hovering (or when paused) and an item is active, dim all non-active items */
+    .banner .slider.paused .item:not(.active) img {
+        filter: brightness(0.6);
+    }
+    
 
 
 
@@ -1679,7 +1753,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         transform: translateX(-50%);
         width: min(1400px, 100vw);
         height: max-content;
-        padding-bottom: 100px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -1712,7 +1785,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     .banner .content .model{
         background-image: url(model.png);
         width: 100%;
-        height: 75vh;
+        height: 80vh;
         position: absolute;
         bottom: 0;
         left: 0;
