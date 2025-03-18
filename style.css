@@ -134,11 +134,11 @@ html{
 /* Menu Styles */
 /* Explicitly hide Resume link only on mobile */
 @media (max-width: 768px) {
-    .resume-link {
+    .navbar {
       display: none;
     }
   }
-  
+
 .navbar ul {
     width: 100%;
     display: flex;

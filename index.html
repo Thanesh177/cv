@@ -397,104 +397,105 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const images = document.querySelectorAll("#nextSection .pic");
-            const textElements = document.querySelectorAll("#nextSection .text-item");
-            const nextSection = document.querySelector("#nextSection");
-            let currentIndex = 0;
-            let isAnimating = false;
-            let isInView = false;
-            let allImagesScrolled = false;
-            let startX = 0, endX = 0; // For touch swipe support
+    const images = document.querySelectorAll("#nextSection .pic");
+    const textElements = document.querySelectorAll("#nextSection .text-item");
+    const nextSection = document.querySelector("#nextSection");
+    let currentIndex = 0;
+    let isAnimating = false;
+    let isInView = false;
+    let allImagesScrolled = false;
+    let startX = 0, endX = 0;
+    let startY = 0, endY = 0;
 
-            function showContent(index, direction) {
-                images.forEach((img, i) => {
-                    img.style.zIndex = i === index ? "2" : "1";
-                    img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
-                    img.style.opacity = i === index ? "1" : "0";
-                    img.style.transform = i === index
-                        ? "translateX(0)"
-                        : direction === "next"
-                        ? "translateX(100%)"
-                        : "translateX(-100%)";
-                });
-
-                textElements.forEach((text, i) => {
-                    if (i === index) {
-                        text.classList.add("active");
-                        text.style.display = "block"; // Ensure text stays visible
-                    } else {
-                        text.classList.remove("active");
-                        text.style.display = "none";
-                    }
-                });
-
-                if (index === images.length - 1) {
-                    allImagesScrolled = true;
-                    document.body.style.overflow = "auto";
-                } else if (index === 0) {
-                    document.body.style.overflow = "auto";
-                } else {
-                    document.body.style.overflow = "hidden";
-                }
-            }
-
-            function handleScroll(event) {
-                if (!isInView || isAnimating || allImagesScrolled) return;
-                event.preventDefault();
-                document.body.style.overflow = "hidden";
-
-                let scrollDirection = event.deltaY > 0 ? "next" : "prev";
-
-                if (scrollDirection === "next" && currentIndex < images.length - 1) {
-                    currentIndex++;
-                } else if (scrollDirection === "prev" && currentIndex > 0) {
-                    currentIndex--;
-                }
-
-                isAnimating = true;
-                showContent(currentIndex, scrollDirection);
-
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 1300);
-            }
-
-            function handleTouchStart(event) {
-                startX = event.touches[0].clientX;
-            }
-
-            function handleTouchMove(event) {
-                endX = event.touches[0].clientX;
-            }
-
-            function handleTouchEnd() {
-                let swipeDistance = startX - endX;
-                if (swipeDistance > 50 && currentIndex < images.length - 1) {
-                    currentIndex++;
-                    showContent(currentIndex, "next");
-                } else if (swipeDistance < -50 && currentIndex > 0) {
-                    currentIndex--;
-                    showContent(currentIndex, "prev");
-                }
-            }
-
-            showContent(currentIndex, "next");
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    isInView = entry.isIntersecting;
-                    document.body.style.overflow = isInView ? "hidden" : "auto";
-                    if (!isInView) allImagesScrolled = false;
-                });
-            }, { threshold:0.91 });
-
-            observer.observe(nextSection);
-
-            window.addEventListener("wheel", handleScroll, { passive: false });
-            window.addEventListener("touchstart", handleTouchStart, { passive: true });
-            window.addEventListener("touchmove", handleTouchMove, { passive: true });
-            window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    function showContent(index, direction) {
+        images.forEach((img, i) => {
+            img.style.zIndex = i === index ? "2" : "1";
+            img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
+            img.style.opacity = i === index ? "1" : "0";
+            img.style.transform = i === index
+                ? "translateX(0)"
+                : direction === "next"
+                ? "translateX(100%)"
+                : "translateX(-100%)";
         });
+
+        textElements.forEach((text, i) => {
+            if (i === index) {
+                text.classList.add("active");
+                text.style.display = "block";
+            } else {
+                text.classList.remove("active");
+                text.style.display = "none";
+            }
+        });
+
+        document.body.style.overflow = (index === 0 || index === images.length - 1) ? "auto" : "hidden";
+    }
+
+    function handleScroll(event) {
+        if (!isInView || isAnimating || allImagesScrolled) return;
+        event.preventDefault();
+
+        const direction = event.deltaY > 0 ? "next" : "prev";
+
+        if (direction === "next" && currentIndex < images.length - 1) {
+            currentIndex++;
+        } else if (direction === "prev" && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        isAnimating = true;
+        showContent(currentIndex, direction);
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 900);
+    }
+
+    function handleTouchStart(event) {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    }
+
+    function handleTouchMove(event) {
+        endX = event.touches[0].clientX;
+        endY = event.touches[0].clientY;
+    }
+
+    function handleTouchEnd(event) {
+        const swipeDistanceX = startX - endX;
+        const swipeDistanceY = startY - endY;
+
+        if (Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) && Math.abs(swipeDistanceX) > 50) {
+            if (swipeDistanceX > 0 && currentIndex < images.length - 1) {
+                currentIndex++;
+                showContent(currentIndex, "next");
+            } else if (swipeDistanceX < 0 && currentIndex > 0) {
+                currentIndex--;
+                showContent(currentIndex, "prev");
+            }
+        }
+    }
+
+    showContent(currentIndex, "next");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isInView = entry.isIntersecting;
+            document.body.style.overflow = isInView ? "hidden" : "auto";
+            if (!isInView) allImagesScrolled = false;
+        });
+    }, { threshold: 0.9 });
+
+    observer.observe(nextSection);
+
+    window.addEventListener("wheel", handleScroll, { passive: false });
+
+    // Set passive: false to allow preventDefault on mobile touch events
+    window.addEventListener("touchstart", handleTouchStart, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: false });
+});
     </script>
 
  </body>
