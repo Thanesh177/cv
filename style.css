@@ -485,10 +485,13 @@ padding: 0px 20px;
 
 .text-box p{
     font: 0.8rem sans-serif;
+    text-align: center;
+
 }
 
 .text-box small{
     display: inline-block;
+    text-align: center;
     margin-bottom: 15px;
 }
 
