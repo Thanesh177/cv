@@ -115,23 +115,17 @@ html{
     filter: blur(4px);
   }
 }
-/* Button Styles */
-#menuToggle {
-    padding-top: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
+
 
 /* Navbar Container */
 .navbar {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
+    padding: 10px;
     background-color: #000;
     width: 100%;
     z-index: 100000;
@@ -148,14 +142,13 @@ html{
     background-color: #111;
     transition: transform 0.5s ease, opacity 0.5s ease;
     transform: scale(0.8);
-    opacity: 0;
-    pointer-events: none; /* Prevent interaction when hidden */
+    pointer-events: auto; /* Prevent interaction when hidden */
 }
 
 /* Menu Items */
 .navbar ul li {
     font-family: century;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-style: normal;
     margin: 10px;
 }
@@ -291,6 +284,8 @@ padding: 0px 20px;
     width: 100%;
     color: white;
     font-size: 1.2rem;
+    text-align: justify;
+
     padding: 35px;
     padding-top: 125px;
     transition: opacity 1s ease-in-out; /* Smooth transition for the appearance */
@@ -298,10 +293,13 @@ padding: 0px 20px;
 
 #intro.visible {
     opacity: 1; /* Make visible when the 'visible' class is added */
+    animation: slideInTop 1.2s ease-in-out;
+
 }
 
 #intro h2{
     font-size: 2rem;
+    text-align: justify;
     margin-bottom: 10px;
     color: white;
 }
@@ -322,6 +320,7 @@ padding: 0px 20px;
     color: white;
     position: absolute;
     word-wrap: break-word; 
+    text-align: justify;
     max-width: 80%; /* Set a maximum width for the text */
     justify-content: center;
     z-index: 0; /* Set a higher z-index value to overlap the .o class */
@@ -335,7 +334,8 @@ padding: 0px 20px;
 
 
 .o--visible{
-    transform: translateY(0);
+    animation: slideInTop 1.2s ease-in-out;
+
     opacity: 1;
 }
 
@@ -346,8 +346,6 @@ padding: 0px 20px;
     display: flex;
     gap: 4vmin;
     transform: translate(0%, -50%); 
-    user-select: none; /* -- Prevent image highlighting -- */
-
 }
 
 .image {
@@ -358,20 +356,21 @@ padding: 0px 20px;
     border-radius: 50%;
     filter: brightness(0.75);
     transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
 }
-.image.active {
-    transform: scale(1.1) !important;
-    filter: brightness(1.2) !important;
-  }
 
-.image:hover {
-transform: scale(1) !important;
-filter: brightness(1) !important;
+.image.active:hover{
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    z-index: 10; /* Bring the active image to the front */
 }
+
+
 /* Dim non-active images */
 .image.dim {
     filter: brightness(0.6);
 }
+
 
 /* timeline */ 
 #timeline{
@@ -392,7 +391,8 @@ filter: brightness(1) !important;
 
 .container.visible {
     opacity: 1;
-    transform: translateY(1); /* Move container down when visible */
+    animation: slideInTop 1.2s ease-in-out;
+
 }
 
 @keyframes movedown {
@@ -427,7 +427,7 @@ filter: brightness(1) !important;
     position: relative;
     border-radius: 25px;
     box-shadow: 2px 2px 4px #a7b9fd, -2px -2px 4px #a7b9fd;
-    width: 50%;
+    width: 40%;
     height: auto;
     border: 1px solid black;
 
@@ -440,10 +440,10 @@ filter: brightness(1) !important;
 
 }
 .left{
-    left: 5%;
+    right: 25%;
 }
 .right{
-    left: 55%;
+    left: 25%;
 
 }
 
@@ -476,7 +476,6 @@ filter: brightness(1) !important;
     display: inline-block;
     margin-bottom: 15px;
 }
-
 
 
 /*.img{
@@ -518,8 +517,8 @@ filter: brightness(1) !important;
 }
 .banner .slider{
     position: absolute;
-    width: 200px;
-    height: 250px;
+    width: 10px;
+    height: 50px;
     top: 10%;
     padding-left: 80px;
     left: calc(50% - 100px);
@@ -565,7 +564,7 @@ filter: brightness(1) !important;
 }
 .banner .content h1{
     font-family: 'ICA Rubrik';
-    font-size: 16em;
+    font-size: 13rem;
     line-height: 1em;
     color: #25283B;
     position: relative;
@@ -584,7 +583,7 @@ filter: brightness(1) !important;
     max-width: 200px;
 }
 .banner .content h2{
-    font-size: 3em;
+    font-size: 3rem;
 }
 .banner .content .model{
     background-color: #000;
@@ -656,21 +655,102 @@ filter: brightness(1) !important;
 
 
 
-.banner .slider{
-    width: 60px;
-    height: 100px;
-    left: calc(50% - 50px);
+    .banner .slider{
+        width: 60px;
+        height: 100px;
+        left: calc(50% - 50px);
+    }
+
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+    .banner .content h1{
+        font-size: 5em;
+    }
+
+/* === Mobile Optimized Layout === */
+#nextSection {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding-top: 50px;
+    overflow: hidden;
+    background-color: black;
 }
 
-.banner .slider .item{
-    transform: 
-        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(180px);
-}
-.banner .content h1{
-    font-size: 5em;
+.container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* === Image Container on Top === */
+.image-container {
+    width: 100%;
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding-bottom: 20px; /* Spacing between image & text */
+}
+
+/* === Image Styling for Mobile === */
+.pic {
+    position: relative;
+    opacity: 0;
+    width: 100%;
+    max-width: 350px; /* Adjust image size */
+    transform: translateY(100px); /* Start position below */
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out, filter 1s ease-in-out;
+}
+
+.pic.active {
+    opacity: 1;
+    transform: translateY(0); /* Slides up into place */
+    filter: blur(0);
+}
+
+.pic img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 5px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* === Text Container Below Image === */
+.text-container {
+    color: rgb(255, 255, 255);
+    width: 90%;
+    text-align: center;
+    min-height: 150px; /* Adjusted for smaller screens */
+    padding: 10px;
+    order: 2; /* Moves text below the image */
+}
+
+/* === Text Style with Bottom-to-Top Transition === */
+.text-item {
+    font-size: 20px;
+    opacity: 0;
+    display: none;
+    text-align: justify;
+    transform: translateY(50px); /* Starts below */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    position: relative;
+    width: 100%;
+}
+
+.text-item.active {
+    opacity: 1;
+    display: block;
+    transform: translateY(0); /* Slides up into place */
+}
 
 
 /* service section*/
@@ -781,22 +861,30 @@ filter: brightness(1) !important;
 }
 
 
-/* Specific images for each box */
-#box1::before {
-    background: url('s1.png') no-repeat center/cover;
-}
+        /* Specific images for each box */
+        #box1::before {
+            background: url('s1.png') no-repeat center/cover;
+        }
+        
+        #box2::before {
+            background: url('s2.png') no-repeat center/cover;
+        }
 
-#box2::before {
-    background: url('s2.png') no-repeat center/cover;
-}
+        #box3::before {
+            background: url('s3.png') no-repeat center/cover;
+        }
 
-#box3::before {
-    background: url('s3.png') no-repeat center/cover;
-}
+        #box5::before {
+            background: url('qq.png') no-repeat center/cover;
+        }
+
+        #box4::before {
+            background: url('premium_photo-1681586126003-2a6d4ba943a2.jpeg') no-repeat center/cover;
+        }
 
 
 .box--visible {
-    transform: translateY(0);
+    animation: slideInTop 1.2s ease-in-out;
     opacity: 1;
 }
 
@@ -987,7 +1075,8 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 } 
 
 .m--visible{
-    transform: translateY(0);
+    animation: slideInTop 1.2s ease-in-out;
+
     opacity: 1;
 }
 
@@ -1111,7 +1200,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         position: sticky;
         padding-top: 7px;
         top: 0;
-        /*z-index: 1001;   */
+        z-index: 1001;   
     }
 
     .navbar ul {
@@ -1245,25 +1334,38 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         background: black;
     }
-    #intro {
+
+    @keyframes slideInBottomScale {
+        from {
+          transform: translateY(100%) scale(0.75);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      
+      #intro {
         opacity: 0; /* Initially invisible */
         display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        line-height: 1.6;
+        text-align: justify;
         padding: 200px;
         width: 100%;
         height: 70vh;
-        clip-path: inset(50% 50% 50% 50%); /* Start fully hidden */
-        transition: opacity 1.5s ease-in-out, clip-path 1.5s ease-in-out; /* Smooth reveal effect */
-    }
-    
-    #intro.visible {
-        opacity: 1; /* Make visible */
-        clip-path: inset(0 0 0 0); /* Reveal content */
-    }
+        clip-path: inset(0 0 0 0); /* Ensure content is not clipped */
+        transform: scale(0.75); /* Start slightly scaled down */
+      }
+      
+      #intro.visible {
+        /* Apply the combined slide-in-from-bottom, fade, and scale animation */
+        animation: slideInBottomScale 1.2s ease-in-out forwards;
+      }
     
 
     /* portfolio section*/
@@ -1305,13 +1407,13 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         object-fit: cover;
         object-position: center;
         border-radius: 50%;
-        filter: brightness(0.75);
+        filter: brightness(0.85);
         transition: transform 0.3s ease, filter 0.3s ease;
     }
     
     /* Active image pops out with increased brightness and scale */
     .image.active {
-        transform: scale(1.0) !important;
+        transform: scale(1.2) !important;
         filter: brightness(1.2) !important;
       }
 
@@ -1320,6 +1422,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         transform: scale(1.1) !important;
         filter: brightness(1.1) !important;
     }
+
 
     
     /*  timeline 
@@ -1555,10 +1658,18 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         #box3::before {
             background: url('s3.png') no-repeat center/cover;
         }
+
+        #box5::before {
+            background: url('qq.png') no-repeat center/cover;
+        }
+
+        #box4::before {
+            background: url('premium_photo-1681586126003-2a6d4ba943a2.jpeg') no-repeat center/cover;
+        }
         
         
         .box--visible {
-            transform: translateY(0);
+            animation: slideInTop 1.2s ease-in-out;
             opacity: 1;
         }
         
@@ -1573,7 +1684,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         
         .box.active {
-            background-position: left bottom;
+            background: rgb(9, 9, 3);
             color: black;
             border: none;
             box-shadow: 0 0 40px rgb(126, 165, 255);
@@ -1628,19 +1739,28 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         }
         
+        .text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .c {
+            flex-grow: 1; /* Takes up remaining space between text and buttons */
+        }
+        
         .pp {
             display: flex;
+            justify-content: center;
             margin-top: 27px;
-            margin-left: 50px;
             gap: 10px;
             opacity: 0; /* Initially hidden */
-            transform: translateY(20px); /* Move slightly downward */
-            transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+            transform: translateY(20px);
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
         
         .box:hover .pp {
-            opacity: 1; /* Fully visible on hover */
-            transform: translateY(0); /* Return to original position */
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .pp.active{
@@ -1649,52 +1769,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         }
 
 
-    /*Action*/
+    /*top*/
     @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
     @import url('https://fonts.cdnfonts.com/css/poppins');
 
 
-
-    .banner{
-        width: 100%;
-        height: 90vh;
-        background-color: #000;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .banner .slider{
-        position: absolute;
-        width: 100px;
-        height: 120px;
-        top: 5%;
-        left: calc(50% - 100px);
-        transform-style: preserve-3d;
-        transform: perspective(1000px);
-        animation: autoRun 20s linear infinite;
-        z-index: 20;
-    }
-    @keyframes autoRun{
-        from{
-            transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
-        }to{
-            transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
-        }
-    }
-
-    .banner .slider .item{
-        position: absolute;
-        inset: 0 0 0 0;
-        transform: 
-            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(550px);
-    }
-
-    .banner .slider .item img{
-        width: 94%;
-        height: 98%;
-        object-fit: cover;
-    }
 
     
     /* When the slider is hovered, dim all its items */
@@ -1705,8 +1784,10 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 
     /* When an individual item is hovered, override to brighten it */
     .banner .slider .item:hover {
-        filter: brightness(1.2);
+        filter: brightness(1.1);
         transition: filter 0.5s ease-in-out;
+        box-shadow: 0 0 30px rgb(134, 59, 238);
+
     }
 
     .banner .slider .item{
@@ -1723,16 +1804,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         animation-play-state: paused;
     }
 
-    /* Pop-out effect when clicked */
-    .banner .slider .item.active {
-        transform: 
-            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(350px) scale(1); /* Pops out */
-        transition: transform 0.5s ease-in-out;
-        z-index: 100;
-
-        box-shadow: 0 0 40px rgb(134, 59, 238);
-    }
 
     /* Make the active item much brighter */
     .banner .slider .item.active img {
@@ -1745,6 +1816,25 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         filter: brightness(0.6);
     }
     
+    .item {
+        /* For a smooth transition when moving the element */
+        transition: transform 0.2s ease, opacity 0.5s ease;
+      }
+
+
+      
+      /* Optional: a visual marker for the selected item */
+      .item.selected {
+        outline: 2px solid #2ce780;
+      }
+
+      .banner .slider .item.active {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                   translateZ(350px) scale(1) translateY(var(--vertical-offset, 0px));
+        transition: transform 0.1s linear;
+        z-index: 100;
+        box-shadow: 0 0 40px rgb(134, 59, 238);
+    }
 
 
 
@@ -1761,14 +1851,21 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         align-items: center;
         z-index: 1;
     }
-    .banner .content h1{
+    
+    .content h1{
         font-family: 'ICA Rubrik';
-        font-size: 16em;
+        width: 100%;
+        align-items: center;
+        font-size: 13em;
         line-height: 1em;
-        color: #25283B;
+        color: #25283bcf;
         position: relative;
     }
-    .banner .content h1::after{
+
+    .content h1::after{
+        align-items: center;
+        width: 100%;
+
         position: absolute;
         inset: 0 0 0 0;
         content: attr(data-content);
@@ -1776,7 +1873,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         -webkit-text-stroke: 2px #d2d2d2;
         color: transparent;
     }
-    .banner .content .author{
+    .content .author{
         font-family: Poppins;
         text-align: right;
         max-width: 200px;
@@ -1802,28 +1899,223 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             height: 200px;
             left: calc(50% - 80px);
         }
-        .banner .slider .item{
-            transform: 
-                rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-                translateZ(300px);
-        }
-        .banner .content h1{
-            text-align: center;
-            width: 100%;
-            text-shadow: 0 10px 20px #000;
-            font-size: 7em;
-        }
-        .banner .content .author{
-            color: #fff;
-            padding: 20px;
-            text-shadow: 0 10px 20px #000;
-            z-index: 2;
-            max-width: unset;
-            width: 100%;
-            text-align: center;
-            padding: 0 30px;
-        }
 
+
+    /* Banner and Slider Container */
+    .banner {
+    width: 100%;
+    height: 90vh;
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    }
+
+    .banner .slider {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    top: 5%;
+    left: calc(50% - 80px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 20;
+    }
+
+    @keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+    }
+
+    /* Slider Items */
+    .banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                translateZ(300px);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .banner .slider .item img {
+    width: 90%;
+    height: 98%;
+    object-fit: cover;
+    }
+
+    /* Active Slider Item (used in the front container) */
+    .slider .item.active {
+    /* This rule is used when the JS clones the active slider item.
+        The transform here includes the custom property for vertical movement. */
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                translateZ(300px) translateY(var(--vertical-offset, 0px));
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 100;
+    box-shadow: 0 0 40px rgb(134, 59, 238);
+    }
+
+/* Next Section */
+
+    #nextSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: black;
+        flex-direction: row;
+    }
+    
+    /* Container for text and image */
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 90px;
+    }
+    
+    /* Text should be on the left side */
+    .text-container {
+        width: 100%;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: left;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Aligns text to the left */
+        height: 100%;
+        padding-left: 260px;
+        min-height: 300px;
+    }
+    
+    /* Ensures text appears in the correct place */
+    .text-item {
+        opacity: 0;
+        display: none;
+        transform: translateX(-50px); /* Moves text in from the left */
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        position: absolute;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Active text effect */
+    @keyframes slideInTop {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      .text-item.active {
+          opacity: 1;
+          display: block;
+          font-size: 0.9rem;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          color: #ffffff;
+          letter-spacing: 0.5px;
+          line-height: 1.6;
+          text-align: justify;
+          
+          /* Slide in from top */
+          animation: slideInTop 1.2s ease-in-out;
+      }
+    
+    /* Image should be on the right side */
+    .image-container {
+        padding-bottom: 400px;
+        position: relative;
+        width: 50%;
+    }
+    
+    .pic {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%) translateX(100%);
+        opacity: 0;
+        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+    
+    .pic img {
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .text-container {
+        width: 40%;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: left;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        min-height: 300px;
+        padding-right: 60px;
+    }
+    
+    /* Fancy Text Effects */
+    .text-item {
+        opacity: 0;
+        display: none;
+        transform: translateX(-50px) scale(0.9);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        position: absolute;
+        width: 80%;
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        animation: fadeInText 1.2s ease-in-out;
+    }
+    
+    /* Glowing effect for text */
+    .text-item.active {
+        opacity: 1;
+        display: block;
+        transform: translateX(0) scale(1);
+    }
+    
+    /* === MOBILE RESPONSIVE FIX === */
+    @media (max-width: 768px) {
+        #nextSection {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .container {
+            flex-direction: column;
+            padding: 0;
+        }
+    
+        .text-container {
+            width: 100%;
+            text-align: center;
+            padding-right: 0;
+            justify-content: center;
+        }
+    
+        .image-container {
+            width: 100%;
+        }
+    }
 
     /* contact section*/
     #contact{

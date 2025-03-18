@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         },
-        { threshold: 0.3 } // Triggers when 30% of the element is visible
+        { threshold: 0.5 } // Triggers when 30% of the element is visible
     );
 
     observer.observe(intro);
 });
+
 
 
 document.addEventListener("scroll", function(){ 
@@ -104,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setInterval(changeText, 4000); // Change text every 4 seconds
 });
+
 
 
 
