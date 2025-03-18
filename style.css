@@ -132,6 +132,13 @@ html{
 }
 
 /* Menu Styles */
+/* Explicitly hide Resume link only on mobile */
+@media (max-width: 768px) {
+    .resume-link {
+      display: none;
+    }
+  }
+  
 .navbar ul {
     width: 100%;
     display: flex;
@@ -478,7 +485,6 @@ padding: 0px 20px;
 
 .text-box p{
     font: 0.8rem sans-serif;
-    text-align: justify;
 }
 
 .text-box small{

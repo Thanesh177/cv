@@ -50,7 +50,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#nextSection">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="Thanesh_Resume.pdf">Resume</a></li>
+          <li class="resume-link"><a href="Thanesh_Resume.pdf">Resume</a></li>
         </ul>
     </div>
 
@@ -133,8 +133,7 @@
                 <h2>Kalam Institute for Technical Education</h2>
                 <small>Robotics-Teacher</small>
                 <p> 
-                    Mentored students and Conducted workshops in building, programming, and troubleshooting robotic systems using microcontrollers, sensors, and motors.<br>
-                    
+                    Mentored students  and Conducted workshops in building, programming, and troubleshooting robotic systems using microcontrollers, sensors, and motors to complete interactive challenges.<br>
                 </p>
             </div>
         </div>
@@ -145,7 +144,7 @@
                 <h2>Masters in Computer Science</h2>
                 <small>2023-2025</small>
                 <p> 
-                    Engaged in advanced coursework and research, focusing on emerging technologies, software development, machine learning, and data science. 
+                    Engaged in advanced coursework and research, focusing on emerging technologies, software development, machine learning, and data science.
                 </p>
             </div>
         </div>
@@ -397,111 +396,105 @@
     </script>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const images = document.querySelectorAll("#nextSection .pic");
-    const textElements = document.querySelectorAll("#nextSection .text-item");
-    const nextSection = document.querySelector("#nextSection");
-    let currentIndex = 0;
-    let isAnimating = false;
-    let isInView = false;
-    let allImagesScrolled = false;
-    let startX = 0, endX = 0, startY = 0, endY = 0;
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll("#nextSection .pic");
+            const textElements = document.querySelectorAll("#nextSection .text-item");
+            const nextSection = document.querySelector("#nextSection");
+            let currentIndex = 0;
+            let isAnimating = false;
+            let isInView = false;
+            let allImagesScrolled = false;
+            let startX = 0, endX = 0; // For touch swipe support
 
-    function showContent(index, direction) {
-        images.forEach((img, i) => {
-            img.style.zIndex = i === index ? "2" : "1";
-            img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
-            img.style.opacity = i === index ? "1" : "0";
-            img.style.transform = i === index
-                ? "translateX(0)"
-                : direction === "next"
-                ? "translateX(100%)"
-                : "translateX(-100%)";
-        });
+            function showContent(index, direction) {
+                images.forEach((img, i) => {
+                    img.style.zIndex = i === index ? "2" : "1";
+                    img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
+                    img.style.opacity = i === index ? "1" : "0";
+                    img.style.transform = i === index
+                        ? "translateX(0)"
+                        : direction === "next"
+                        ? "translateX(100%)"
+                        : "translateX(-100%)";
+                });
 
-        textElements.forEach((text, i) => {
-            if (i === index) {
-                text.classList.add("active");
-                text.style.display = "block";
-            } else {
-                text.classList.remove("active");
-                text.style.display = "none";
-            }
-        });
+                textElements.forEach((text, i) => {
+                    if (i === index) {
+                        text.classList.add("active");
+                        text.style.display = "block"; // Ensure text stays visible
+                    } else {
+                        text.classList.remove("active");
+                        text.style.display = "none";
+                    }
+                });
 
-        document.body.style.overflow = (index === images.length - 1 || index === 0) ? "auto" : "hidden";
-        allImagesScrolled = index === images.length - 1;
-    }
-
-    function handleScroll(event) {
-        if (!isInView || isAnimating || allImagesScrolled) return;
-        event.preventDefault();
-
-        let scrollDirection = event.deltaY > 0 ? "next" : "prev";
-
-        if (scrollDirection === "next" && currentIndex < images.length - 1) {
-            currentIndex++;
-        } else if (scrollDirection === "prev" && currentIndex > 0) {
-            currentIndex--;
-        } else {
-            return;
-        }
-
-        isAnimating = true;
-        showContent(currentIndex, scrollDirection);
-
-        setTimeout(() => { isAnimating = false; }, 1000);
-    }
-
-    function handleTouchStart(event) {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-    }
-
-    function handleTouchMove(event) {
-        endX = event.touches[0].clientX;
-        endY = event.touches[0].clientY;
-    }
-
-    function handleTouchEnd() {
-        if (isAnimating) return;
-
-        let diffX = startX - endX;
-        let diffY = startY - endY;
-
-        // Horizontal swipe detection only if horizontal swipe distance is significantly greater than vertical swipe distance
-        if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
-            if (diffX > 50 && currentIndex < images.length - 1) {
-                currentIndex++;
-                isAnimating = true;
-                showContent(currentIndex, "next");
-            } else if (diffX < -50 && currentIndex > 0) {
-                currentIndex--;
-                isAnimating = true;
-                showContent(currentIndex, "prev");
+                if (index === images.length - 1) {
+                    allImagesScrolled = true;
+                    document.body.style.overflow = "auto";
+                } else if (index === 0) {
+                    document.body.style.overflow = "auto";
+                } else {
+                    document.body.style.overflow = "hidden";
+                }
             }
 
-            setTimeout(() => { isAnimating = false; }, 1000);
-        }
-    }
+            function handleScroll(event) {
+                if (!isInView || isAnimating || allImagesScrolled) return;
+                event.preventDefault();
+                document.body.style.overflow = "hidden";
 
-    showContent(currentIndex, "next");
+                let scrollDirection = event.deltaY > 0 ? "next" : "prev";
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            isInView = entry.isIntersecting;
-            document.body.style.overflow = isInView && !allImagesScrolled ? "hidden" : "auto";
-            if (!isInView) allImagesScrolled = false;
+                if (scrollDirection === "next" && currentIndex < images.length - 1) {
+                    currentIndex++;
+                } else if (scrollDirection === "prev" && currentIndex > 0) {
+                    currentIndex--;
+                }
+
+                isAnimating = true;
+                showContent(currentIndex, scrollDirection);
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 1300);
+            }
+
+            function handleTouchStart(event) {
+                startX = event.touches[0].clientX;
+            }
+
+            function handleTouchMove(event) {
+                endX = event.touches[0].clientX;
+            }
+
+            function handleTouchEnd() {
+                let swipeDistance = startX - endX;
+                if (swipeDistance > 50 && currentIndex < images.length - 1) {
+                    currentIndex++;
+                    showContent(currentIndex, "next");
+                } else if (swipeDistance < -50 && currentIndex > 0) {
+                    currentIndex--;
+                    showContent(currentIndex, "prev");
+                }
+            }
+
+            showContent(currentIndex, "next");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isInView = entry.isIntersecting;
+                    document.body.style.overflow = isInView ? "hidden" : "auto";
+                    if (!isInView) allImagesScrolled = false;
+                });
+            }, { threshold:0.91 });
+
+            observer.observe(nextSection);
+
+            window.addEventListener("wheel", handleScroll, { passive: false });
+            window.addEventListener("touchstart", handleTouchStart, { passive: true });
+            window.addEventListener("touchmove", handleTouchMove, { passive: true });
+            window.addEventListener("touchend", handleTouchEnd, { passive: true });
         });
-    }, { threshold: 0.91 });
-
-    observer.observe(nextSection);
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-});
     </script>
 
  </body>
