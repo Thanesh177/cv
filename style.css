@@ -469,7 +469,12 @@ padding: 0px 20px;
     }
 }
 .text-box h2{
-    font: 1.2em sans-serif;
+    font: 1rem sans-serif;
+}
+
+.text-box p{
+    font: 0.8rem sans-serif;
+    text-align: justify;
 }
 
 .text-box small{
