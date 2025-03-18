@@ -396,7 +396,7 @@
     </script>
 
     <script>
-       document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function () {
     const images = document.querySelectorAll("#nextSection .pic");
     const textElements = document.querySelectorAll("#nextSection .text-item");
     const nextSection = document.querySelector("#nextSection");
@@ -426,30 +426,27 @@
                 text.style.display = "none";
             }
         });
-
-        document.body.style.overflow = (index === 0 || index === images.length - 1) ? "auto" : "hidden";
     }
 
     function handleScroll(event) {
         if (!isInView || isAnimating) return;
-        event.preventDefault();
 
-        let direction = event.deltaY > 0 ? "next" : "prev";
+        const direction = event.deltaY > 0 ? "next" : "prev";
 
         if (direction === "next" && currentIndex < images.length - 1) {
+            event.preventDefault();
             currentIndex++;
         } else if (direction === "prev" && currentIndex > 0) {
+            event.preventDefault();
             currentIndex--;
         } else {
-            return;
+            return; // Allow normal scrolling when at edges
         }
 
         isAnimating = true;
         showContent(currentIndex, direction);
 
-        setTimeout(() => {
-            isAnimating = false;
-        }, 1300);
+        setTimeout(() => isAnimating = false, 1300);
     }
 
     function handleTouchStart(event) {
@@ -465,7 +462,6 @@
         const deltaY = endY - startY;
 
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50 && !isAnimating) {
-            isAnimating = true;
             if (deltaX < 0 && currentIndex < images.length - 1) {
                 currentIndex++;
                 showContent(currentIndex, "next");
@@ -473,6 +469,7 @@
                 currentIndex--;
                 showContent(currentIndex, "prev");
             }
+            isAnimating = true;
             setTimeout(() => isAnimating = false, 800);
         }
     }
@@ -485,10 +482,12 @@
 
     observer.observe(nextSection);
 
-    // Initial content display
     showContent(currentIndex, "next");
 
-    window.addEventListener("wheel", handleScroll, { passive: false });
+    // Only attach wheel event listener if the device doesn't support touch events.
+    if (!('ontouchstart' in window)) {
+        window.addEventListener("wheel", handleScroll, { passive: false });
+    }
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
 });
