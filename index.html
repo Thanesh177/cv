@@ -396,12 +396,13 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
     const images = document.querySelectorAll("#nextSection .pic");
     const textElements = document.querySelectorAll("#nextSection .text-item");
     const nextSection = document.querySelector("#nextSection");
     let currentIndex = 0;
     let isAnimating = false;
+    let isInView = false;
     let startX = 0, startY = 0, endX = 0, endY = 0;
 
     function showContent(index, direction) {
@@ -417,8 +418,38 @@
         });
 
         textElements.forEach((text, i) => {
-            text.style.display = i === index ? "block" : "none";
+            if (i === index) {
+                text.classList.add("active");
+                text.style.display = "block";
+            } else {
+                text.classList.remove("active");
+                text.style.display = "none";
+            }
         });
+
+        document.body.style.overflow = (index === 0 || index === images.length - 1) ? "auto" : "hidden";
+    }
+
+    function handleScroll(event) {
+        if (!isInView || isAnimating) return;
+        event.preventDefault();
+
+        let direction = event.deltaY > 0 ? "next" : "prev";
+
+        if (direction === "next" && currentIndex < images.length - 1) {
+            currentIndex++;
+        } else if (direction === "prev" && currentIndex > 0) {
+            currentIndex--;
+        } else {
+            return;
+        }
+
+        isAnimating = true;
+        showContent(currentIndex, direction);
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 1300);
     }
 
     function handleTouchStart(event) {
@@ -433,7 +464,6 @@
         const deltaX = endX - startX;
         const deltaY = endY - startY;
 
-        // Check horizontal swipe only if horizontal distance is greater than vertical
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50 && !isAnimating) {
             isAnimating = true;
             if (deltaX < 0 && currentIndex < images.length - 1) {
@@ -447,9 +477,18 @@
         }
     }
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isInView = entry.isIntersecting;
+        });
+    }, { threshold: 0.9 });
+
+    observer.observe(nextSection);
+
     // Initial content display
     showContent(currentIndex, "next");
 
+    window.addEventListener("wheel", handleScroll, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
 });
