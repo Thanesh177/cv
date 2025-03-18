@@ -155,9 +155,9 @@ html{
 /* Menu Items */
 .navbar ul li {
     font-family: century;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-style: normal;
-    margin: 7px;
+    margin: 10px;
     justify-items: center;
     align-items: center;
 }
