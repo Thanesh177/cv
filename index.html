@@ -402,8 +402,7 @@
     const nextSection = document.querySelector("#nextSection");
     let currentIndex = 0;
     let isAnimating = false;
-    let isInView = false;
-    let startY = 0, endY = 0;
+    let startX = 0, startY = 0, endX = 0, endY = 0;
 
     function showContent(index, direction) {
         images.forEach((img, i) => {
@@ -411,82 +410,48 @@
             img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
             img.style.opacity = i === index ? "1" : "0";
             img.style.transform = i === index
-                ? "translateY(0)"
+                ? "translateX(0)"
                 : direction === "next"
-                ? "translateY(100%)"
-                : "translateY(-100%)";
+                ? "translateX(100%)"
+                : "translateX(-100%)";
         });
 
         textElements.forEach((text, i) => {
-            if (i === index) {
-                text.classList.add("active");
-                text.style.display = "block";
-            } else {
-                text.classList.remove("active");
-                text.style.display = "none";
-            }
+            text.style.display = i === index ? "block" : "none";
         });
-
-        document.body.style.overflow = (index === 0 || index === images.length - 1) ? "auto" : "hidden";
-    }
-
-    function handleScroll(event) {
-        if (!isInView || isAnimating) return;
-        event.preventDefault();
-
-        const direction = event.deltaY > 0 ? "next" : "prev";
-
-        if (direction === "next" && currentIndex < images.length - 1) {
-            currentIndex++;
-        } else if (direction === "prev" && currentIndex > 0) {
-            currentIndex--;
-        }
-
-        isAnimating = true;
-        showContent(currentIndex, direction);
-
-        setTimeout(() => {
-            isAnimating = false;
-        }, 900);
     }
 
     function handleTouchStart(event) {
+        startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
     }
 
-    function handleTouchMove(event) {
-        endY = event.touches[0].clientY;
-    }
+    function handleTouchEnd(event) {
+        endX = event.changedTouches[0].clientX;
+        endY = event.changedTouches[0].clientY;
 
-    function handleTouchEnd() {
-        const swipeDistanceY = startY - endY;
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
 
-        if (swipeDistanceY > 50 && currentIndex < images.length - 1) {
-            currentIndex++;
-            showContent(currentIndex, "next");
-        } else if (swipeDistanceY < -50 && currentIndex > 0) {
-            currentIndex--;
-            showContent(currentIndex, "prev");
+        // Check horizontal swipe only if horizontal distance is greater than vertical
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50 && !isAnimating) {
+            isAnimating = true;
+            if (deltaX < 0 && currentIndex < images.length - 1) {
+                currentIndex++;
+                showContent(currentIndex, "next");
+            } else if (deltaX > 0 && currentIndex > 0) {
+                currentIndex--;
+                showContent(currentIndex, "prev");
+            }
+            setTimeout(() => isAnimating = false, 800);
         }
     }
 
+    // Initial content display
     showContent(currentIndex, "next");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            isInView = entry.isIntersecting;
-            document.body.style.overflow = isInView ? "hidden" : "auto";
-        });
-    }, { threshold: 0.9 });
-
-    observer.observe(nextSection);
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-
-    // Mobile vertical swipe
-    window.addEventListener("touchstart", handleTouchStart, { passive: false });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
-    window.addEventListener("touchend", handleTouchEnd, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 });
     </script>
 
