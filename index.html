@@ -45,30 +45,39 @@
       </div>
 
     <div class="navbar">
-        <ul class="hidden">
-          <li><a href="#action">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#nextSection">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="resume-link"><a href="Thanesh_Resume.pdf">Resume</a></li>
-        </ul>
+        <a href="#about" class="logo">Thanesh</a>
+        <nav>
+          <a href="#nextSection">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="Resume.pdf">Resume</a>
+        </nav>
     </div>
+
+    <section class ="shooting-star">
+        <span ></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </section>
+
+    <div class="star-background"></div>
 
     <section id="action" >
         <div class="banner">
           <div class="slider" style="--quantity: 7">
-            <div class="item" style="--position: 1"><img src="1.avif" alt=""></div>
-            <div class="item" style="--position: 2"><img src="5.png" alt=""></div>
-            <div class="item" style="--position: 3"><img src="3.webp" alt=""></div>
-            <div class="item" style="--position: 4"><img src="4.webp" alt=""></div>
-            <div class="item" style="--position: 5"><img src="2.jpg" alt=""></div>
-            <div class="item" style="--position: 6"><img src="s1.png" alt=""></div>
+            <div class="item" style="--position: 1"><img src="database.png" alt=""></div>
+            <div class="item" style="--position: 2"><img src="database.png" alt=""></div>
+            <div class="item" style="--position: 3"><img src="database.png" alt=""></div>
+            <div class="item" style="--position: 4"><img src="database.png" alt=""></div>
+            <div class="item" style="--position: 5"><img src="database.png" alt=""></div>
+            <div class="item" style="--position: 6"><img src="database.png" alt=""></div>
             <div class="item" style="--position: 7"><img src="database.png" alt=""></div>
           </div>
         <div class="content">
-            <h1 data-content="THANESH">THANESH</h1>
             <div class="author">
-              <h2>THANESH</h2>
+              <h2>Developer</h2>
               <p><b>Web Design</b></p>
             </div>
             <div class="model"></div>
@@ -112,13 +121,16 @@
           <img class="image" src="0x0.jpg" draggable="false"/>
         </div>
       </section>
+
+
       
 
     <section id="timeline">
         <br>
+        <br>     
         <div class="container left">
             <img src="">
-            <div class="text-box">
+            <div class="text-box" style="text-align: center;">
                 <h2>Bachelor in computer science</h2>
                 <small>2019-2022</small>
                 <p> 	
@@ -129,7 +141,7 @@
 
         <div class="container right">
             <img src="">
-            <div class="text-box">
+            <div class="text-box" style="text-align: center;">
                 <h2>Kalam Institute for Technical Education</h2>
                 <small>Robotics-Teacher</small>
                 <p> 
@@ -140,7 +152,7 @@
 
         <div class="container left">
             <img src="">
-            <div class="text-box">
+            <div class="text-box" style="text-align: center;">
                 <h2>Masters in Computer Science</h2>
                 <small>2023-2025</small>
                 <p> 
@@ -151,9 +163,8 @@
 
         <div class="container right">
             <img src="">
-            <div class="text-box">
+            <div class="text-box" style="text-align: center;">
                 <h2>Major-Projects</h2>
-                <small>till 2025</small>
                 <p> 
                     •	Medicine-Online (Website)<br>
                     •	Stockie (Website)<br>
@@ -217,6 +228,10 @@
                 <div class="pic"><img src="s3.png" alt="Image 3"></div>
                 <div class="pic"><img src="premium_photo-1681586126003-2a6d4ba943a2.jpeg" alt="Image 4"></div>
                 <div class="pic"><img src="qq.png" alt="Image 4"></div>
+            </div>
+            <div class="button-group">
+                <button id="prevBtn">Prev</button>
+                <button id="nextBtn">Next</button>
             </div>
         </div>
     </section>
@@ -320,10 +335,8 @@
                         •	Maze Solver Robot<br>
                     </p>
                 </div>
-                <div class="pp">
+                <div class="pp" >
                     <a class="bt" href="#" id="myButton">></a>
-                    <a href="https://www.linkedin.com/in/ntthanesh/>"<i class='bx bxl-github'></i></a>
-                    <a href="https://www.instagram.com/thaneshnt/>"<i class='bx bx-expand' ></i></a>  
                 </div>       
             </div>
 
@@ -396,102 +409,53 @@
     </script>
 
     <script>
-       document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll("#nextSection .pic");
     const textElements = document.querySelectorAll("#nextSection .text-item");
-    const nextSection = document.querySelector("#nextSection");
-    let currentIndex = 0;
-    let isAnimating = false;
-    let isInView = false;
-    let startX = 0, startY = 0, endX = 0, endY = 0;
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
-    function showContent(index, direction) {
+    let currentIndex = 0;
+    const TRANSITION_DURATION = 800;
+
+    function updateDisplay(index, direction) {
         images.forEach((img, i) => {
             img.style.zIndex = i === index ? "2" : "1";
-            img.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
+            img.style.transition = `transform ${TRANSITION_DURATION}ms ease, opacity ${TRANSITION_DURATION}ms ease`;
             img.style.opacity = i === index ? "1" : "0";
             img.style.transform = i === index
                 ? "translateX(0)"
-                : direction === "next"
-                ? "translateX(100%)"
-                : "translateX(-100%)";
+                : `translateX(${direction === "next" ? "100%" : "-100%"})`;
         });
 
         textElements.forEach((text, i) => {
-            if (i === index) {
-                text.classList.add("active");
-                text.style.display = "block";
-            } else {
-                text.classList.remove("active");
-                text.style.display = "none";
-            }
+            text.classList.toggle("active", i === index);
+            text.style.display = i === index ? "block" : "none";
         });
-
-        document.body.style.overflow = (index === 0 || index === images.length - 1) ? "auto" : "hidden";
     }
 
-    function handleScroll(event) {
-        if (!isInView || isAnimating) return;
-        event.preventDefault();
-
-        let direction = event.deltaY > 0 ? "next" : "prev";
-
-        if (direction === "next" && currentIndex < images.length - 1) {
+    function goToNext() {
+        if (currentIndex < images.length - 1) {
             currentIndex++;
-        } else if (direction === "prev" && currentIndex > 0) {
+            updateDisplay(currentIndex, "next");
+        }
+    }
+
+    function goToPrev() {
+        if (currentIndex > 0) {
             currentIndex--;
-        } else {
-            return;
-        }
-
-        isAnimating = true;
-        showContent(currentIndex, direction);
-
-        setTimeout(() => {
-            isAnimating = false;
-        }, 1300);
-    }
-
-    function handleTouchStart(event) {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-    }
-
-    function handleTouchEnd(event) {
-        endX = event.changedTouches[0].clientX;
-        endY = event.changedTouches[0].clientY;
-
-        const deltaX = endX - startX;
-        const deltaY = endY - startY;
-
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50 && !isAnimating) {
-            isAnimating = true;
-            if (deltaX < 0 && currentIndex < images.length - 1) {
-                currentIndex++;
-                showContent(currentIndex, "next");
-            } else if (deltaX > 0 && currentIndex > 0) {
-                currentIndex--;
-                showContent(currentIndex, "prev");
-            }
-            setTimeout(() => isAnimating = false, 800);
+            updateDisplay(currentIndex, "prev");
         }
     }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            isInView = entry.isIntersecting;
-        });
-    }, { threshold: 0.9 });
+    prevBtn.addEventListener("click", goToPrev);
+    nextBtn.addEventListener("click", goToNext);
 
-    observer.observe(nextSection);
-
-    // Initial content display
-    showContent(currentIndex, "next");
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    // Initial display
+    updateDisplay(currentIndex, "next");
 });
+
+
     </script>
 
  </body>

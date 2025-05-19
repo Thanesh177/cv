@@ -565,7 +565,7 @@ padding: 0px 20px;
 }
 .banner .slider .item img{
     width: 140%;
-    height: 180%;
+    height: 120%;
     object-fit: cover;
 }
 .banner .content{
@@ -678,7 +678,7 @@ padding: 0px 20px;
     .banner .slider{
         width: 60px;
         height: 100px;
-        left: calc(50% - 50px);
+        left: calc(50% - 36px);
     }
 
     .banner .slider .item{
@@ -690,10 +690,7 @@ padding: 0px 20px;
         font-size: 5em;
     }
 
-/* === Mobile Optimized Layout === */
-#nextSection {
-    display: none;
-}
+
 
 .container {
     flex-direction: column;
@@ -988,6 +985,68 @@ padding: 0px 20px;
 
 }
 
+#nextSection {
+    position: relative;
+    background: black;
+    padding-top: 80px;
+    height: 100vh;
+}
+
+/* Button Group Layout */
+.button-group {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 16px;
+    z-index: 10;
+}
+
+/* Shared Button Styles */
+#nextSection button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fdfdfd;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(82, 77, 77, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Hover/Active Effects */
+#nextSection button:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+#nextSection button:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ✅ Mobile Optimizations */
+    .button-group {
+        flex-direction: column;
+        bottom: 20px;
+        gap: 12px;
+    }
+
+    #nextSection button {
+        width: 20vw;
+        font-size: 15px;
+        padding: 14px 0;
+        border-radius: 40px;
+    }
+
+
+
+
 /* contact section*/
 #contact{
 display: flex;
@@ -1206,46 +1265,45 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
   }
 }
 
-    .navbar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-        position: sticky;
-        padding-top: 7px;
-        top: 0;
-        z-index: 1001;   
-    }
+.navbar {
+    display: flex;
+    justify-content: space-between;  /* space between nav and logo */
+    align-items: center;
+    background-color: black;
+    padding: 18px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
 
-    .navbar ul {
-        display: flex;
-        background-color: transparent;
-        list-style: none;
-        margin: 30px 0;
-    }
+.navbar nav {
+    display: flex;
+    gap: 30px; /* spacing between nav links */
+}
 
+.navbar nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
 
-    .navbar ul li {
-        font-size: 1.7rem;
-        font-style: normal;
-        font-weight: bold;
-        width: 150px;
-        padding: 8px;
-    }
+.navbar nav a:hover {
+    color: rgb(128, 222, 230);
+    box-shadow: 0 0 10px rgb(128, 74, 165);
+    opacity: 0.75;
+}
 
-    .navbar ul li a {
-        text-decoration: none;
-        color: #ffffff; /* Dark gray color for text */
-        padding: 0px 2px;
-        transition: all 0.5s ease;
-    }
+/* Logo on right */
+.navbar .logo {
+    color: rgb(128, 74, 165);
+    font-size: 2.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-    .navbar ul li a:hover {
-        color: rgb(128, 222, 230); /* Dark gray text on hover */
-        box-shadow: 0 0 10px rgba(254, 255, 255, 0.3); /* Subtle shadow on hover */
-        opacity: .59;
-        transition: .5s;
-    }
 
     /*HomeSection*/
 
@@ -1358,7 +1416,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
           transform: translateY(0) scale(1);
           opacity: 1;
         }
-      }
+      } 
       
       #intro {
         opacity: 0; /* Initially invisible */
@@ -1378,7 +1436,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
       
       #intro.visible {
         /* Apply the combined slide-in-from-bottom, fade, and scale animation */
-        animation: slideInBottomScale 1.2s ease-in-out forwards;
+        animation: slideInBottomScale 1.3s ease-in-out both;
       }
     
 
@@ -1800,7 +1858,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     .banner .slider .item:hover {
         filter: brightness(1.1);
         transition: filter 0.5s ease-in-out;
-        box-shadow: 0 0 30px rgb(134, 59, 238);
 
     }
 
@@ -1830,24 +1887,13 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         filter: brightness(0.6);
     }
     
-    .item {
-        /* For a smooth transition when moving the element */
-        transition: transform 0.2s ease, opacity 0.5s ease;
-      }
 
-
-      
-      /* Optional: a visual marker for the selected item */
-      .item.selected {
-        outline: 2px solid #2ce780;
-      }
 
       .banner .slider .item.active {
         transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
                    translateZ(350px) scale(1) translateY(var(--vertical-offset, 0px));
         transition: transform 0.1s linear;
         z-index: 100;
-        box-shadow: 0 0 40px rgb(134, 59, 238);
     }
 
 
@@ -1863,15 +1909,15 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        z-index: 1;
+        z-index: 1000;
     }
     
     .content h1{
         font-family: 'ICA Rubrik';
-        width: 100%;
+        width: 800%;
         align-items: center;
         font-size: 13em;
-        line-height: 1em;
+        line-height: 1rem;
         color: #25283bcf;
         position: relative;
     }
@@ -1884,8 +1930,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         inset: 0 0 0 0;
         content: attr(data-content);
         z-index: 2;
-        -webkit-text-stroke: 2px #d2d2d2;
-        color: transparent;
+        -webkit-text-stroke: 2px #ffffff;
     }
     .content .author{
         font-family: Poppins;
@@ -1908,11 +1953,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         z-index: 1;
     }
 
-        .banner .slider{
-            width: 160px;
-            height: 200px;
-            left: calc(50% - 80px);
-        }
 
 
     /* Banner and Slider Container */
@@ -1923,56 +1963,188 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     position: relative;
     overflow: hidden;
     text-align: center;
+      perspective: 1000px; /* Correct use of perspective */
     }
 
     .banner .slider {
-    position: absolute;
-    width: 160px;
-    height: 200px;
-    top: 5%;
-    left: calc(50% - 80px);
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-    animation: autoRun 20s linear infinite;
-    z-index: 20;
+        position: absolute;
+        width: 160px;
+        height: 70px;
+        top: 26%;
+        left: calc(50% - 80px);
+        transform-style: preserve-3d;
+        animation: autoRun 55s linear infinite;
+        z-index: 200;
     }
 
-    @keyframes autoRun {
-    from {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
-    }
-    to {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
-    }
-    }
+    .item {
+
+        /* For a smooth transition when moving the element */
+        transition: transform 0.2s ease, opacity 0.5s ease;
+      }
 
     /* Slider Items */
     .banner .slider .item {
-    position: absolute;
-    inset: 0;
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-                translateZ(300px);
-    transition: transform 0.8s ease, opacity 0.8s ease;
+        position: absolute;
+        inset: 0;
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                    translateZ(350px);
+        transition: transform 2s ease, opacity 0.8s ease;
     }
+
+    @keyframes autoRun {
+        from {
+            transform: perspective(200px) rotateX(100deg) rotateY(0deg);
+        }
+        to {
+            transform: perspective(1000px) rotateX(100deg) rotateY(360deg) ;
+        }
+    }
+
 
     .banner .slider .item img {
-    width: 90%;
-    height: 98%;
-    object-fit: cover;
+        width: 120%;
+        height: 28%;
+        object-fit: cover;
     }
 
-    /* Active Slider Item (used in the front container) */
-    .slider .item.active {
-    /* This rule is used when the JS clones the active slider item.
-        The transform here includes the custom property for vertical movement. */
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-                translateZ(300px) translateY(var(--vertical-offset, 0px));
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    z-index: 100;
-    box-shadow: 0 0 40px rgb(134, 59, 238);
-    }
+/*shooting-star*/
+.shooting-star {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.shooting-star span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: rgb(22, 112, 215);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 
+              0 0 0 8px rgba(255, 255, 255, 0.1), 
+              0 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: shoot linear infinite;
+}
+
+
+.shooting-star span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, white, transparent);
+  filter: blur(1px);
+}
+
+@keyframes shoot {
+  0% {
+    transform: rotate(315deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1000px);
+    opacity: 0;
+  }
+}
+
+.shooting-star span:nth-child(1) {
+  top: -10%;
+  left: 30%;
+  animation-delay: 3s;
+  animation-duration: 2.8s;
+}
+
+
+
+.shooting-star span:nth-child(2) {
+  top: 0%;
+  left: 45%;
+  animation-delay: 14s;
+  animation-duration: 2.4s;
+}
+
+
+
+
+.shooting-star span:nth-child(3) {
+  top: -10%;
+  left: 70%;
+  animation-delay: 10.3s;
+  animation-duration: 2.7s;
+}
+
+.shooting-star span:nth-child(4) {
+  top: 0%;
+  left: 95%;
+  animation-delay: 8.8s;
+  animation-duration: 2s;
+}
+
+
+.shooting-star span:nth-child(5) {
+  top: 20%;
+  left: 120%;
+  animation-delay: 5s;
+  animation-duration: 2.2s;
+}
+
+
 
 /* Next Section */
+#nextSection {
+    position: relative;
+}
+
+.button-group {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+#nextSection button {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+#nextSection button:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+#nextSection button:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
 
     #nextSection {
         display: flex;
