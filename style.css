@@ -152,6 +152,101 @@ html{
     pointer-events: auto; /* Prevent interaction when hidden */
 }
 
+
+/*shooting-star*/
+.shooting-star {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.shooting-star span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: rgb(22, 112, 215);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 
+              0 0 0 8px rgba(255, 255, 255, 0.1), 
+              0 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: shoot linear infinite;
+}
+
+
+.shooting-star span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, white, transparent);
+  filter: blur(1px);
+}
+
+@keyframes shoot {
+  0% {
+    transform: rotate(315deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1000px);
+    opacity: 0;
+  }
+}
+
+.shooting-star span:nth-child(1) {
+  top: -10%;
+  left: 30%;
+  animation-delay: 3s;
+  animation-duration: 2.8s;
+}
+
+
+
+.shooting-star span:nth-child(2) {
+  top: 0%;
+  left: 45%;
+  animation-delay: 14s;
+  animation-duration: 2.4s;
+}
+
+
+
+
+.shooting-star span:nth-child(3) {
+  top: -10%;
+  left: 70%;
+  animation-delay: 10.3s;
+  animation-duration: 2.7s;
+}
+
+.shooting-star span:nth-child(4) {
+  top: 0%;
+  left: 95%;
+  animation-delay: 8.8s;
+  animation-duration: 2s;
+}
+
+
+.shooting-star span:nth-child(5) {
+  top: 20%;
+  left: 120%;
+  animation-delay: 5s;
+  animation-duration: 2.2s;
+}
+
+
 /* Menu Items */
 .navbar ul li {
     font-family: century;
@@ -989,7 +1084,7 @@ padding: 0px 20px;
     position: relative;
     background: black;
     padding-top: 80px;
-    height: 100vh;
+    height: auto;
 }
 
 /* Button Group Layout */
