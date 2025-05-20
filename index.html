@@ -53,14 +53,7 @@
         </nav>
     </div>
 
-    <section class ="shooting-star">
-        <span ></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
 
-    </section>
 
     <div class="star-background"></div>
 
@@ -83,6 +76,15 @@
             <div class="model"></div>
         </div>
       </section>
+
+    <section class ="shooting-star">
+        <span ></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </section>
 
     <section id="about">
             <div id="intro">
@@ -229,12 +231,16 @@
                 <div class="pic"><img src="premium_photo-1681586126003-2a6d4ba943a2.jpeg" alt="Image 4"></div>
                 <div class="pic"><img src="qq.png" alt="Image 4"></div>
             </div>
-            <div class="button-group">
-                <button id="prevBtn">Prev</button>
-                <button id="nextBtn">Next</button>
-            </div>
         </div>
-    </section>
+        
+
+        <div class="button-group">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+
+        <div class="dot-container" id="dotContainer"></div>
+
     </section>
 
     <section id="services">
@@ -409,14 +415,31 @@
     </script>
 
     <script>
-       document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll("#nextSection .pic");
     const textElements = document.querySelectorAll("#nextSection .text-item");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const dotContainer = document.getElementById("dotContainer");
 
     let currentIndex = 0;
     const TRANSITION_DURATION = 800;
+
+    // Generate dots
+    images.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (i === 0) dot.classList.add("active");
+        dotContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+    }
 
     function updateDisplay(index, direction) {
         images.forEach((img, i) => {
@@ -432,6 +455,8 @@
             text.classList.toggle("active", i === index);
             text.style.display = i === index ? "block" : "none";
         });
+
+        updateDots(index);
     }
 
     function goToNext() {
@@ -451,9 +476,9 @@
     prevBtn.addEventListener("click", goToPrev);
     nextBtn.addEventListener("click", goToNext);
 
-    // Initial display
     updateDisplay(currentIndex, "next");
 });
+
 
 
     </script>
