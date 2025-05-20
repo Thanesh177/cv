@@ -1090,27 +1090,33 @@ padding: 0px 20px;
 /* Button Group Layout */
 .button-group {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 16px;
     z-index: 10;
 }
 
 /* Shared Button Styles */
 #nextSection button {
-    padding: 12px 24px;
     font-size: 16px;
     font-weight: 600;
     color: #fdfdfd;
     background: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(82, 77, 77, 0.3);
     backdrop-filter: blur(12px);
-    border-radius: 50px;
+    border-radius: 40px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: all 0.3s ease;
     letter-spacing: 1px;
+    width: 20vw;
+    font-size: 15px;
+    padding: 14px 0;
     white-space: nowrap;
+    bottom: 20px;
 }
 
 /* Hover/Active Effects */
@@ -1125,19 +1131,8 @@ padding: 0px 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* ✅ Mobile Optimizations */
-    .button-group {
-        flex-direction: column;
-        bottom: 20px;
-        gap: 12px;
-    }
 
-    #nextSection button {
-        width: 20vw;
-        font-size: 15px;
-        padding: 14px 0;
-        border-radius: 40px;
-    }
+
 
 
 
