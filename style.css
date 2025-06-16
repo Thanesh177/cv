@@ -1118,9 +1118,7 @@ padding: 0px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     letter-spacing: 1px;
-    width: 20vw;
     font-size: 15px;
-    padding: 14px 0;
     white-space: nowrap;
     bottom: 20px;
 }
@@ -1165,6 +1163,9 @@ padding: 0px 20px;
     display: none;
   }
 
+  .image-container{
+    overflow: hidden;
+  }
 
 
 
