@@ -87,3 +87,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updatePosition();
 });
+
+//intro
+
+document.addEventListener('DOMContentLoaded', () => {
+  const intro = document.getElementById('intro');
+  if (!intro) return;
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      intro.classList.add('visible');
+      observer.unobserve(intro);
+    }
+  }, { threshold: 0.3 });
+
+  obs.observe(intro);
+});
+
+//timeline
+document.addEventListener('DOMContentLoaded', () => {
+  const tl = document.querySelector('.timeline');
+  if (!tl) return;
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      tl.classList.add('visible');
+      observer.unobserve(tl);
+    }
+  }, { threshold: 0.2 });
+
+  obs.observe(tl);
+});
