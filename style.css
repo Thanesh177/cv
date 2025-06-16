@@ -627,11 +627,12 @@ padding: 0px 20px;
 @import url('https://fonts.cdnfonts.com/css/poppins');
 
 .banner{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     text-align: center;
     overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 .banner .slider{
     position: absolute;
@@ -696,7 +697,9 @@ padding: 0px 20px;
     .banner .content .you{
         display: flex;
         color: #ff1c1c;
+        width: 100%;
         font-size: 9rem;
+        overflow: hidden;
     }
 
 
@@ -1427,6 +1430,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     /*HomeSection*/
 
     #home{
+        overflow: hidden;
         background-color: black;
         display : flex;
         flex-direction : column;
