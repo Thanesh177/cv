@@ -120,37 +120,52 @@ html{
 /* Navbar Container */
 .navbar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     padding: 10px;
-    background-color: #000;
+    background-color: black; /* Transparent background */
     width: 100%;
     z-index: 100000;
 }
 
-/* Menu Styles */
-/* Explicitly hide Resume link only on mobile */
-@media (max-width: 768px) {
-    .navbar {
-      display: none;
-    }
-  }
-
 .navbar ul {
     width: 100%;
+    color: #ffffff;
     display: flex;
     flex-direction: row;
     align-items: center;
     list-style: none;
     margin: 0;
-    background-color: #111;
     transition: transform 0.5s ease, opacity 0.5s ease;
     transform: scale(0.8);
     pointer-events: auto; /* Prevent interaction when hidden */
 }
+
+.logo{
+    color: #c679cd;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+.navbar nav a{
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px ;
+    transition: all 0.5s ease;
+    justify-items: center;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+.navbar nav a:hover {
+    color: rgb(128, 222, 230);
+    box-shadow: 0 0 10px rgba(254, 255, 255, 0.3);
+    opacity: 0.59;
+}
+
+
 
 
 /*shooting-star*/
@@ -224,22 +239,9 @@ html{
 
 
 
+
+
 .shooting-star span:nth-child(3) {
-  top: -10%;
-  left: 70%;
-  animation-delay: 10.3s;
-  animation-duration: 2.7s;
-}
-
-.shooting-star span:nth-child(4) {
-  top: 0%;
-  left: 95%;
-  animation-delay: 8.8s;
-  animation-duration: 2s;
-}
-
-
-.shooting-star span:nth-child(5) {
   top: 20%;
   left: 120%;
   animation-delay: 5s;
@@ -247,37 +249,6 @@ html{
 }
 
 
-/* Menu Items */
-.navbar ul li {
-    font-family: century;
-    font-size: 1.5rem;
-    font-style: normal;
-    margin: 10px;
-    justify-items: center;
-    align-items: center;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: #ffffff;
-    padding: 5px ;
-    transition: all 0.5s ease;
-    justify-items: center;
-    align-items: center;
-}
-
-.navbar ul li a:hover {
-    color: rgb(128, 222, 230);
-    box-shadow: 0 0 10px rgba(254, 255, 255, 0.3);
-    opacity: 0.59;
-}
-
-/* Show the menu when the 'show' class is added */
-.navbar ul.show {
-    transform: scale(1);
-    opacity: 1;
-    pointer-events: auto; /* Allow interaction when visible */
-}
 
 
 /*HomeSection*/
@@ -638,8 +609,8 @@ padding: 0px 20px;
     position: absolute;
     width: 10px;
     height: 50px;
-    top: 23%;
-    padding-left: 80px;
+    top: 25%;
+    padding-left: 90px;
     left: calc(50% - 100px);
     transform-style: preserve-3d;
     transform: perspective(1000px);
@@ -655,7 +626,7 @@ padding: 0px 20px;
 }
 
 .banner .slider .item{
-    padding-top: 70px;
+    padding-top: 75px;
     position: absolute;
     inset: 0 0 0 0;
     transform: 
@@ -664,7 +635,7 @@ padding: 0px 20px;
 }
 .banner .slider .item img{
     width: 140%;
-    height: 120%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -2115,7 +2086,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     /* When the slider is hovered, dim all its items */
     .banner .slider:hover .item {
-        filter: brightness(0.5);
+        filter: brightness(0.8);
         transition: filter 0.5s ease-in-out;
     }
 
@@ -2127,7 +2098,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
 
     .banner .slider .item{
-        filter: brightness(1);
+        filter: brightness(1.8);
         transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     }
 
@@ -2333,14 +2304,8 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 
 
 
-.shooting-star span:nth-child(3) {
-  top: -10%;
-  left: 70%;
-  animation-delay: 10.3s;
-  animation-duration: 2.7s;
-}
 
-.shooting-star span:nth-child(4) {
+.shooting-star span:nth-child(3) {
   top: 0%;
   left: 95%;
   animation-delay: 8.8s;
@@ -2348,12 +2313,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 }
 
 
-.shooting-star span:nth-child(5) {
-  top: 20%;
-  left: 120%;
-  animation-delay: 5s;
-  animation-duration: 2.2s;
-}
 
 .still-star {
   position: absolute;
