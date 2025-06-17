@@ -125,7 +125,7 @@ html{
     justify-content: space-between;
     position: sticky;
     top: 0;
-    padding: 10px;
+    padding: 30px 15px;
     background-color: black; /* Transparent background */
     width: 100%;
     z-index: 100;
@@ -293,7 +293,6 @@ html{
     overflow: hidden;
     display: inline-block;
     width: 0;
-    opacity: 1;
     animation: typing 2s steps(20, end) infinite alternate, 
                cursor 0.5s step-end infinite;
 }
@@ -529,9 +528,10 @@ padding: 0px 20px;
 
 .timeline-item .content:hover{
   color: white;
-        box-shadow: 0px 0px 15px rgb(126, 165, 255);
+        box-shadow: 0px 0px 18px rgb(126, 165, 255);
         transition: 0.5s;
         border: 1px solid white;
+        filter: invert(7%);
 
   padding: 1rem;
 }
@@ -779,7 +779,7 @@ padding: 0px 20px;
     justify-content: center;
     align-items: center;
     height: auto;
-    padding-bottom: 20px; /* Spacing between image & text */
+    padding: 20px 30px; /* Spacing between image & text */
 }
 
 /* === Image Styling for Mobile === */
@@ -887,11 +887,10 @@ padding: 0px 20px;
     display: flex;
     flex-direction: column;
     bottom: 0;
-    width: 250px;
-    height: 390px;
+    width: 230px;
+    height: 370px;
     font-size: 1rem;
     border: 1px solid black;
-    padding: 15px;
     border-radius: 15px;
     color: white;
     opacity: 0;
@@ -1085,7 +1084,6 @@ padding: 0px 20px;
     background: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(82, 77, 77, 0.3);
     backdrop-filter: blur(12px);
-    border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1115,7 +1113,7 @@ padding: 0px 20px;
     display: flex;
     gap: 10px;
     z-index: 9;
-    padding: 20px;
+    padding: 10px;
 }
 
 .dot-container .dot {
@@ -1697,6 +1695,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         box-shadow: 0px 0px 20px rgb(126, 165, 255);
         transition: 0.5s;
         border: 1px solid white;
+        filter: invert(7%);
 
   padding: 1.2rem;
 }
