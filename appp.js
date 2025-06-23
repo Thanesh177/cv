@@ -118,3 +118,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   obs.observe(tl);
 });
+
+ 
+//fadeup animation
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.fadeup');
+  if (!items.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        // element has entered view (from either direction)
+        entry.target.classList.add('visible');
+      } else {
+        // element has left view (above or below)
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 1  // fire when 15% of the element is visible
+  });
+
+  items.forEach(el => io.observe(el));
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const boxes = document.querySelectorAll('.box.fadeup');
+  if (!boxes.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.7
+  });
+
+  boxes.forEach(box => io.observe(box));
+});

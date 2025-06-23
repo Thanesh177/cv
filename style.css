@@ -170,6 +170,7 @@ html{
 
 /*shooting-star*/
 .shooting-star {
+    display: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -520,7 +521,18 @@ padding: 0px 20px;
     padding 0.5s ease;
 }
 
+/* Base: offscreen & invisible */
+.fadeup {
+  opacity: 0;
+  transform: translateY(30px) scale(0.55);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
 
+/* On .visible: slide into place & fade in */
+.fadeup.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
 .timeline-item .content h3{
     color: #a4a0a0;
@@ -965,10 +977,7 @@ padding: 0px 20px;
             background: url('dev.png') no-repeat center/cover;
         }
 
-.box--visible {
-    animation: slideInTop 1.2s ease-in-out;
-    opacity: 1;
-}
+
 
 .box:hover {
     color: black;
@@ -1008,6 +1017,21 @@ padding: 0px 20px;
     transition-delay: 0.5s; /* Delay visibility change */
     transform: translateY(0);
     transform: rotateY(180deg);
+}
+
+/* Base state: boxes are low and transparent */
+.box.fadeup {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: 
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+/* When .visible is added, they slide up & fade in */
+.box.fadeup.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 
@@ -1612,6 +1636,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     
     #image-track {
+        padding-bottom: 100px;
         display: flex;
         gap: 2.5vmin;
         position: relative;
@@ -1651,14 +1676,15 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 .timeline {
   position: relative;
   background-color: #000;
-  padding: 230px 500px;
+  padding: 140px 500px;
 }
 
 /* center vertical line */
 .timeline::before {
   content: '';
   position: absolute;
-  top: 15%; bottom: 12%;
+  top: 15%; 
+  bottom: 12%;
   left: 50%;
   width: 2px;
   background: #ddd;
@@ -1686,6 +1712,20 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     padding 0.5s ease;
 }
 
+
+/* Base: offscreen & invisible */
+.fadeup {
+  opacity: 0;
+  transform: translateY(30px) scale(0.55);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+/* On .visible: slide into place & fade in */
+.fadeup.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .timeline-item .content h3{
     color: #a4a0a0;
 }
@@ -1705,12 +1745,12 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
   content: '';
   position: absolute;
   top: 1.25rem;       /* adjust to vertically align with content */
-  width: 12px;
-  height: 12px;
-  background: #0359b4;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: #b0b5bb;
+  border-radius: 30%;
   border: 2px solid #fff;
-  box-shadow: 0 0 0 2px #014791;
+  box-shadow: 0 0 0 2px #ffffff;
 }
 
 /* left items */
@@ -2155,13 +2195,17 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         padding-bottom: 500px;
         font-size: 3rem;
         color: white;
+        text-align: left;
     }
 
     .banner .content .you{
         display: flex;
-        color: #ff1c1c;
-        font-size: 3rem;
+        color: #8953af;
+        font-size: 2rem;
         padding-bottom: 470px;
+        max-width: 550px;
+        padding-left: 200px;
+        text-align: center;
     }
 
     .banner .content .model{
@@ -2462,7 +2506,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 80vh;
         width: 100%;
         position: relative;
         overflow: hidden;
