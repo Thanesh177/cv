@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     autoScrollActive = true;
   });
 
-  setInterval(autoScroll, 20);
+  setInterval(autoScroll, 40);
 
   // Smooth update function using requestAnimationFrame
   const updatePosition = () => {

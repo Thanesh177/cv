@@ -116,3 +116,112 @@ function isInview(element) {
          rect.top < (window.innerHeight - 150 || document.documentElement.clientHeight - 150) 
     ); 
 }
+
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const line = document.querySelector('.growing-line');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          line.classList.add('animate');
+          observer.unobserve(line); // Run only once
+        }
+      });
+    });
+
+    if (line) {
+      observer.observe(line);
+    }
+  });
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const textItems = document.querySelectorAll('.text-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Optional: animate once
+        }
+      });
+    }, {
+      threshold: 0.2 // Adjust if needed
+    });
+
+    textItems.forEach(item => {
+      observer.observe(item);
+    });
+  });
+
+  
+const repelElements = document.querySelectorAll('.corner');
+let draggedEl = null;
+let offsetX = 0;
+let offsetY = 0;
+
+// Mouse Repel Logic
+document.addEventListener('mousemove', (e) => {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+
+  repelElements.forEach(el => {
+    if (el === draggedEl) return; // Skip if dragging
+
+    const rect = el.getBoundingClientRect();
+    const elX = rect.left + rect.width / 2;
+    const elY = rect.top + rect.height / 2;
+
+    const dx = elX - mouseX;
+    const dy = elY - mouseY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    const repelZone = 200; // More sensitive zone
+    const maxOffset = 300; // Max push
+
+    if (distance < repelZone) {
+      const angle = Math.atan2(dy, dx);
+      const repelStrength = (repelZone - distance) / repelZone;
+      const moveX = Math.cos(angle) * repelStrength * maxOffset;
+      const moveY = Math.sin(angle) * repelStrength * maxOffset;
+
+      el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    } else {
+      el.style.transform = 'translate(0, 0)';
+    }
+  });
+});
+
+// Drag logic
+repelElements.forEach(el => {
+  el.addEventListener('mousedown', (e) => {
+    draggedEl = el;
+    offsetX = e.clientX - el.offsetLeft;
+    offsetY = e.clientY - el.offsetTop;
+    el.style.cursor = 'grabbing';
+  });
+});
+
+document.addEventListener('mouseup', () => {
+  if (draggedEl) {
+    draggedEl.style.cursor = 'grab';
+    draggedEl = null;
+  }
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (draggedEl) {
+    e.preventDefault();
+    const x = e.clientX - offsetX;
+    const y = e.clientY - offsetY;
+    draggedEl.style.left = `${x}px`;
+    draggedEl.style.top = `${y}px`;
+    draggedEl.style.right = 'auto';
+    draggedEl.style.bottom = 'auto';
+    draggedEl.style.transform = 'none'; // Cancel repel during drag
+  }
+});

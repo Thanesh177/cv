@@ -326,56 +326,122 @@ html{
 }
 
 
-
-
-/* about section*/
-#about{
-    display: flex;
-    flex-direction: column;
-    height: 550;
-    width: 100%;
-    background: black;
-    font-size: 1.2rem;
-    padding-bottom: 200px;
+#action {
+  position: relative;
 }
 
-.heading:hover{
-    opacity: 0.7;
-}
-
-
-#pic img{
-width: 20%;
-height: 10%;
-opacity: 80%;
-justify-content: center;
-align-items: center;
-padding: 0px 20px;
-}
-
-/*────────────────────────────────────────────
-  1) DEFAULT #intro & .mc (no animation)
-────────────────────────────────────────────*/
-#intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: justify;      /* full justification */
-  width: 100%;
-  color: white;
+.corner {
+  color: rgb(229, 228, 234);
+  position: absolute;
+  font-weight: bold;
   font-size: 1.2rem;
-  border: 0 solid rgba(255,255,255,0.1);
-  padding: 125px 35px 35px; /* top padding larger for spacing */
-  box-sizing: border-box;
+  transition: transform 0.5s ease-in-out;
+  z-index: 10;
+  padding: 20px 20px;
+  background-color: #000000;
+  border: 0.1rem solid rgb(146, 59, 190);
+  border-radius: 50px;
 }
 
-.mc {
-  padding: 1rem;
-  border-radius: 8px;
-  border: 0 solid white;   /* will draw via animation */
-  background: rgba(0,0,0,0.2); /* optional translucent backdrop */
+
+
+.corner.jitter {
+  transition: transform 0.3s ease;
 }
 
+/* Specific corners */
+.top-left {
+  right: 30%;
+  top: 70px;
+}
+
+.top-right {
+  display: none;
+
+}
+.mid-left{
+  display: none;
+
+}
+
+.mid-right {
+  display: none;
+
+} 
+
+.bottom-left {
+  display: none;
+
+
+}
+
+.bottom-right {
+  display: none;
+
+
+}
+
+#about {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .about-main h1 {
+    font-size: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .about-main h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem 0;
+    color: #aaa;
+  }
+
+  .about-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .about-skills h3 {
+    text-align: center;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .about-skills ul {
+    justify-content: center;
+    padding: 1rem 1rem;
+  }
+
+  .about-side {
+    display: none;
+    border-left: none;
+    border-top: 2px solid #2c3e50;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-side h3 {
+    font-size: 1.1rem;
+  }
+
+  .about-side blockquote {
+    font-size: 0.95rem;
+    color: #bbb;
+  }
+
+  .about-side p {
+    font-size: 0.9rem;
+  }
 /*────────────────────────────────────────────
   2) ANIMATIONS TRIGGERED ON .visible
 ────────────────────────────────────────────*/
@@ -438,6 +504,21 @@ padding: 0px 20px;
 
   
 /* portfolio section*/
+
+    .letter{
+      color: white;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      justify-content: center;
+    }
+
+    .letter:hover {
+        transform: scale(1.2) !important;
+        filter: brightness(1.1) !important;
+        color: rgb(134, 59, 238);
+        transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+        box-shadow: #094fa5;
+    }    
 #portfolio {
     position: absolute;
     background-color: black;
@@ -783,6 +864,8 @@ padding: 0px 20px;
     align-items: center;
 }
 
+
+
 /* === Image Container on Top === */
 .image-container {
     width: 100%;
@@ -1017,22 +1100,10 @@ padding: 0px 20px;
     transition-delay: 0.5s; /* Delay visibility change */
     transform: translateY(0);
     transform: rotateY(180deg);
+        padding: 40px 15px;
+
 }
 
-/* Base state: boxes are low and transparent */
-.box.fadeup {
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  transition: 
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-}
-
-/* When .visible is added, they slide up & fade in */
-.box.fadeup.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
 
 
 
@@ -1076,8 +1147,7 @@ padding: 0px 20px;
 }
 
 .pp.active{
-    transform: rotateY(20deg);
-
+    transform: rotate(20deg);
 }
 
 #nextSection {
@@ -1270,6 +1340,9 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     opacity: 1;
 }
 
+.side-info{
+  display: none;
+}
 }
 
 
@@ -1421,6 +1494,65 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     font-weight: bold;
 }
 
+#action {
+  position: relative;
+}
+
+.corner {
+    color: rgb(229, 228, 234);
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: transform 0.5s ease-in-out;
+  z-index: 10;
+  padding: 20px 20px;
+  background-color: #000000;
+  border: 0.1rem solid rgb(146, 59, 190);
+  border-radius: 50px;
+}
+
+
+
+.corner.jitter {
+  transition: transform 0.3s ease;
+}
+
+/* Specific corners */
+.top-left {
+  top: 20%;
+  left: 20%;
+
+}
+
+.top-right {
+  top: 20%;
+  right: 20%;
+
+}
+.mid-left{
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+}
+
+.mid-right {
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+} 
+
+.bottom-left {
+  bottom: 20%;
+  left: 20%;
+
+}
+
+.bottom-right {
+  bottom: 20%;
+  right: 20%;
+
+}
+
 
     /*HomeSection*/
 
@@ -1517,96 +1649,99 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         font-weight: bold;
     }
 
-    /* about section*/
-    #about{
-        height: 750px;
-        width: 100%;
-        display: flex;
-        background: black;
-
-
-    }
-
-
-
-        @keyframes slideInOut {
-        0% {
-            transform: translateY(20%) scale(1);
-            opacity: 0;
-        }
-        10% {
-            transform: translateY(16) scale(0.3);
-            opacity: 1;
-        }
-        35% {
-            transform: translateY(-20%) scale(01);
-            opacity: 0.6;
-        }
-
-        100% {
-            transform: translateY(0%) scale(0.9);
-            opacity: 1;
-        }
-
-    }
-      
-      #intro {
-        opacity: 0; /* Initially invisible */
-        display: flex;
-        font-size: 1.1rem;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #ffffff;
-        letter-spacing: 0.5px;
-        line-height: 1.6;
-        text-align: justify;
-        padding: 200px;
-        width: 100%;
-        height: 70vh;
-      }
-/* 1) Base styles, no animation on load */
-.mc {
-  border: 0 solid white;
-  padding: 30px 20px;
-  border-radius: 12px;
+#about {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: flex-start;
+  background: #000000;
+  color: #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  margin: auto;
+  padding: 13rem;
+  text-align: center;
 }
 
-/* 2) When #intro gets .visible, trigger borderGrow after 1.4s */
-#intro.visible .mc {
-  animation: borderGrow 0.7s ease-in-out both 0.7s;
+
+/* Left Section */
+.about-main {
+  flex: 2 1 600px;
 }
 
-/* 3) Keep your slide-in animation on #intro.visible */
-#intro.visible {
-  animation: slideInOut 1s ease-in-out both;
+.about-main h1 {
+  font-size: 3rem;
+  margin-bottom: 0.2rem;
 }
 
-/* Keyframes */
-@keyframes slideInOut {
-  0%   { transform: translateY(20%) scale(1);  opacity: 0; }
-  100% { transform: translateY(0) scale(1);    opacity: 1; }
+.about-main h2 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #7898c8;
+  margin-top: 0;
 }
-@keyframes borderGrow {
-  0% {
-    border-width: 0;
-    border-color: rgba(255,255,255,0);
-    box-shadow: 0 0 0 rgba(255,255,255,0);
-  }
-  30% {
-    border-width: 0.05rem;
-    border-color: rgba(255,255,255,0.5);
-    box-shadow: 0 0 5px rgba(255,255,255,0.2);
-  }
-  60% {
-    border-width: 0.1rem;
-    border-color: rgba(255,255,255,0.8);
-    box-shadow: 0 0 10px rgba(255,255,255,0.4);
-  }
-  100% {
-    border-width: 0.19rem;
-    border-color: #ffffff;
-    box-shadow: 0 0 15px rgba(255,255,255,0.6);
-  }
+
+.about-desc {
+  margin-top: 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  text-align: justify;
+  white-space: pre-line;
 }
+
+.about-skills {
+  margin-top: 1.5rem;
+}
+
+.about-skills h3 {
+  color: #7898c8;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  padding: 1rem 0;
+}
+
+.about-skills ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.about-skills li {
+  background: #094fa5;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+/* Right Panel */
+.about-side {
+  flex: 1 1 250px;
+  border-left: 2px solid #2c3e50;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-side h3 {
+  color: #7898c8;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-side blockquote {
+  font-style: italic;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.about-side p {
+  margin: 0.2rem 0;
+}
+
+
 
 
     /* portfolio section*/
@@ -1636,13 +1771,27 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     
     #image-track {
-        padding-bottom: 100px;
         display: flex;
         gap: 2.5vmin;
         position: relative;
-        user-select: none; /* Prevent image highlighting */
+        padding: 50px 0;
     }
-    
+
+    .letter{
+      color: white;
+      font-size: 1.3rem;
+      padding: 10px 20px;
+      justify-content: center;
+    }
+
+    .letter:hover {
+        transform: scale(1.5) !important;
+        filter: brightness(1.1) !important;
+        color: rgb(134, 59, 238);
+        transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+        box-shadow: #094fa5;
+    }    
+
     .image {
         width: 20vmin;
         height: 20vmin;
@@ -1676,99 +1825,130 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 .timeline {
   position: relative;
   background-color: #000;
-  padding: 140px 500px;
+  padding: 0px 50px;
+  padding-bottom: 5rem;
+    overflow-x: auto;
 }
 
-/* center vertical line */
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 15%; 
-  bottom: 12%;
-  left: 50%;
-  width: 2px;
-  background: #ddd;
-  transform: translateX(-50%);
+
+
+/* ─── TIMELINE CONTAINER ─────────────────────── */
+.timeline-container {
+    background-color: #000;
+      position: relative;
+
+  overflow-x: auto;
+  position: relative;
+
+  
 }
 
-/* ─── TIMELINE ITEM ───────────────────────────────────────── */
+
+
+.timeline {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+/* ─── TIMELINE ITEM ───────────────────────────── */
 .timeline-item {
   position: relative;
-  width: 50%;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
+  max-width: 320px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.timeline-item .content p {
+  display: flex;
+  width: 100%;
+  margin: 0.5rem 0 0;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  text-align: center;
+  overflow: hidden;
 }
 
 .timeline-item .content {
   background: #201d1d;
   color: white;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
-   transition: 
+  transition: 
     color 0.5s ease,
     box-shadow 0.5s ease,
     border-color 0.5s ease,
     padding 0.5s ease;
+
 }
 
 
-/* Base: offscreen & invisible */
-.fadeup {
-  opacity: 0;
-  transform: translateY(30px) scale(0.55);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-}
 
-/* On .visible: slide into place & fade in */
-.fadeup.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.timeline-item .content h3{
-    color: #a4a0a0;
-}
-
-.timeline-item .content:hover{
+.timeline-item .content:hover {
   color: white;
-        box-shadow: 0px 0px 20px rgb(126, 165, 255);
-        transition: 0.5s;
-        border: 1px solid white;
-        filter: invert(7%);
-
+  box-shadow: 0px 0px 20px rgb(126, 165, 255);
+  border: 1px solid white;
+  filter: invert(7%);
   padding: 1.2rem;
 }
 
-/* circle marker on the center line */
+.timeline-item .content h3 {
+  color: #a4a0a0;
+  
+}
+
+/* ─── FADE-UP ANIMATION ───────────────────────── */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.55);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fadeup {
+  opacity: 0;
+  transform: translateY(30px) scale(0.55);
+}
+
+.fadeup.visible {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.timeline-item:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 1s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.timeline-item:nth-child(4) {
+  animation-delay: 1.7s;
+}
+.timeline-item:nth-child(5) {
+  animation-delay: 2s;
+}
+
 .timeline-item::before {
-  content: '';
-  position: absolute;
-  top: 1.25rem;       /* adjust to vertically align with content */
-  width: 10px;
-  height: 10px;
-  background: #b0b5bb;
-  border-radius: 30%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 2px #ffffff;
-}
-
-/* left items */
-.timeline-item.left {
-  left: 0;
-  text-align: right;
-}
-.timeline-item.left::before {
-  right: -6px;      /* half of marker width */
-}
-
-/* right items */
-.timeline-item.right {
+  content: '🔷'; /* or use Font Awesome with ::before and class */
+  position: relative;
   left: 50%;
-  text-align: left;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  z-index: 999;
 }
-.timeline-item.right::before {
-  left: -6px;
+
+/* ─── REMOVE LEFT/RIGHT CLASSES ──────────────── */
+.timeline-item.left,
+.timeline-item.right {
+  text-align: center;
 }
 
 
@@ -1889,7 +2069,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         justify-content: center;
         flex-direction: column;
-        padding: 300px;
+        padding: 50px 150px;
         background-color: black;
         height: auto;
         font-size: 1.5rem;
@@ -1934,6 +2114,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         }
         
         .box {
+          position: relative;
             display: flex;
             flex-direction: column;
             bottom: 0;
@@ -1945,9 +2126,9 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             border-radius: 15px;
             color: white;
             opacity: 0;
-            transition: transform 3s ease, opacity 1s ease;
+            transform: translateY(30px) rotateY(180deg);
             transform-style: preserve-3d;
-            transition: background-color 0.5s ease; /* Smooth background transition */
+            transition: transform 1s ease,opacity 1s ease , background-color 0.5s ease; /* Smooth background transition */
         }
         
         .box::before {
@@ -2020,6 +2201,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             animation: slideInTop 1.2s ease-in-out;
             opacity: 1;
         }
+
         
         .box:hover {
             color: black;
@@ -2032,6 +2214,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         
         
         .box.active {
+            background-position: left bottom;
             background: rgb(9, 9, 3);
             color: black;
             border: none;
@@ -2045,7 +2228,6 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             visibility: hidden;
             color: rgb(50, 38, 38);
             opacity: 0;
-            transform: translateY(30px) rotateY(180deg);
             margin-top: 20px; /* Added margin */
             padding: 10px;
             text-align: justify;
@@ -2058,7 +2240,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
             visibility: visible;
             transition-delay: 0.5s; /* Delay visibility change */
             transform: translateY(0);
-            transform: rotateY(180deg);
+
         }
         
 
@@ -2225,12 +2407,12 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 
     /* Banner and Slider Container */
     .banner {
-    width: 100%;
-    height: 90vh;
-    background-color: #000;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
+      width: 100%;
+      height: 90vh;
+      background-color: #000;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
       perspective: 1000px; /* Correct use of perspective */
     }
 
@@ -2238,7 +2420,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         position: absolute;
         width: 160px;
         height: 70px;
-        top: 26%;
+        top: 34%;
         left: calc(50% - 80px);
         transform-style: preserve-3d;
         animation: autoRun 55s linear infinite;
@@ -2262,17 +2444,17 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 
     @keyframes autoRun {
         from {
-            transform: perspective(200px) rotateX(100deg) rotateY(0deg);
+            transform: perspective(500px) rotateX(100deg) rotateY(0deg);
         }
         to {
-            transform: perspective(1000px) rotateX(100deg) rotateY(360deg) ;
+            transform: perspective(500px) rotateX(100deg) rotateY(360deg) ;
         }
     }
 
 
     .banner .slider .item img {
-        width: 120%;
-        height: 28%;
+        width: 130%;
+        height: 90%;
         object-fit: cover;
     }
 
@@ -2486,6 +2668,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     display: flex;
     gap: 10px;
     z-index: 9;
+    padding: 100px;
 }
 
 .dot-container .dot {
@@ -2519,37 +2702,19 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         height: 100vh;
         width: 100%;
-        justify-content: space-between;
         align-items: center;
-        padding: 0 90px;
     }
     
-    /* Text should be on the left side */
-    .text-container {
-        width: 100%;
-        color: white;
-        font-size: 24px;
-        font-weight: bold;
-        text-align: left;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Aligns text to the left */
-        height: 100%;
-        padding-left: 260px;
-        min-height: 300px;
-    }
-    
+
     /* Ensures text appears in the correct place */
     .text-item {
         opacity: 0;
         display: none;
         transform: translateX(-50px); /* Moves text in from the left */
         transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-        position: absolute;
-        width: 100%;
         align-items: center;
-        justify-content: center;
+        justify-content: right;
+        padding: 0 200px;
     }
     
     /* Active text effect */
@@ -2583,11 +2748,11 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         padding-bottom: 400px;
         position: relative;
         width: 50%;
+        
     }
     
     .pic {
         position: absolute;
-        left: 50%;
         transform: translate(-50%, -50%) translateX(100%);
         opacity: 0;
         transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
@@ -2595,14 +2760,14 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     .pic img {
         align-items: center;
-        width: 100%;
+        width: 70%;
         max-width: 600px;
         border-radius: 10px;
         box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .text-container {
-        width: 40%;
+        width: 100%;
         color: white;
         font-size: 28px;
         font-weight: bold;
@@ -2610,10 +2775,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
         height: 100%;
-        min-height: 300px;
-        padding-right: 60px;
     }
     
     /* Fancy Text Effects */
@@ -2659,6 +2821,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         }
     }
 
+
     /* contact section*/
     #contact{
         display: flex;
@@ -2675,22 +2838,24 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
+        padding-top: 20px;
         height: 280px;
-        padding-left: 300px;
+        width: 100%;
     }
 
     .input{
         padding: 12px;
         margin: 7px;
-        width: 35%;
+        width: 32%;
         height: 40px;
         font-size: 15px;
         border: none;
         outline: none;
+        justify-content: center;
     }
 
     #msg{
-        width: 35%;
+        width: 32%;
         height: 27%;
         margin: 7px;
         font-size: 15px;
@@ -2699,15 +2864,14 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
 
     #send{
-        will-change: 10%;
-        margin: 30px;
+      display: flex;
+        margin: 20px;
         border-radius: 10px;
         font-size: 20px;
-        width: 90px;
+        width: 100px;
         height: 30px;
+        justify-content: center;
         align-items: center;
-        border: none;
-        outline: none;
     }
     
     #send:hover{
@@ -2715,6 +2879,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         background: lightblue;
         box-shadow: 0 0 40px lightblue;
         font-weight: bold;
+        transition: all .5s;
     }
 
     .oi{
@@ -2746,4 +2911,22 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         border: none;
         box-shadow: 0 0 40px rgb(126, 165, 255);
     }
+
+
+  .contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 100px;
+    gap: 4rem;
+  }
+
+.side-info {
+  padding-top: 30px;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  max-width: 250px;
+  line-height: 1.7;
+}
+
 }
