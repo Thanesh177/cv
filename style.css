@@ -1180,7 +1180,6 @@ html{
 
 /* Button Group Layout */
 .button-group {
-    position: absolute;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -1229,6 +1228,7 @@ html{
     gap: 10px;
     z-index: 9;
     padding: 10px;
+    bottom: 80px; /* Adjust as needed */
 }
 
 .dot-container .dot {
