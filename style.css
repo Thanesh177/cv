@@ -593,7 +593,7 @@ html{
 
 .timeline {
     position: relative;
-    padding: 10px 1rem;      /* less horizontal padding */
+    padding: 70px 1rem;      /* less horizontal padding */
     background-color: #000;
     color: white;
     overflow: hidden;
@@ -639,8 +639,8 @@ html{
 .timeline::before {
   content: '';
   position: absolute;
-  top: 0;            /* start at the very top */
-  bottom: 0;         /* end at the very bottom */
+  top: 60px;            /* start at the very top */
+  bottom: 80px;         /* end at the very bottom */
   left: 10%;         /* center horizontally */
   width: 1.5px;
   background: #ddd;
@@ -958,7 +958,6 @@ html{
     height: auto;
     width: 100%;
     font-size: 1.5rem;
-    padding-top: 200px;
 }
 
 .head{
@@ -1174,8 +1173,8 @@ html{
 #nextSection {
     position: relative;
     background: black;
-    padding-top: 80px;
     height: auto;
+    padding: 40px 0;
 }
 
 /* Button Group Layout */
@@ -1187,7 +1186,7 @@ html{
     align-items: center;
     gap: 16px;
     z-index: 10;
-    padding: 39px;
+    padding: 24px;
 }
 
 /* Shared Button Styles */
@@ -1228,7 +1227,7 @@ html{
     gap: 10px;
     z-index: 9;
     padding: 10px;
-    bottom: 80px; /* Adjust as needed */
+    bottom: 90px; /* Adjust as needed */
 }
 
 .dot-container .dot {
@@ -1945,7 +1944,7 @@ blockquote {
   width: 100%;
   margin: 0.5rem 0 0;
   line-height: 1.4;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   text-align: center;
   overflow: hidden;
 }
