@@ -1174,7 +1174,7 @@ html{
     position: relative;
     background: black;
     height: auto;
-    padding: 40px 0;
+    padding: 70px 0;
 }
 
 /* Button Group Layout */
@@ -1227,7 +1227,7 @@ html{
     gap: 10px;
     z-index: 9;
     padding: 10px;
-    bottom: 90px; /* Adjust as needed */
+    bottom: 50px; /* Adjust as needed */
 }
 
 .dot-container .dot {
