@@ -339,8 +339,8 @@ html{
   z-index: 10;
   padding: 20px 20px;
   background-color: #000000;
-  border: 0.1rem solid rgb(146, 59, 190);
-  border-radius: 50px;
+  border: 0.1rem solid rgb(54, 42, 60);
+  border-radius: 30px;
 }
 
 
@@ -351,8 +351,8 @@ html{
 
 /* Specific corners */
 .top-left {
-  right: 30%;
-  top: 70px;
+  left:37%;
+  top: 30px;
 }
 
 .top-right {
@@ -405,9 +405,15 @@ html{
   }
 
   .about-desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.6;
     text-align: justify;
+
+  }
+
+  .about-skills {
+    display: none;
+
   }
 
   .about-skills h3 {
@@ -876,6 +882,21 @@ html{
     height: auto;
     padding: 20px 30px; /* Spacing between image & text */
 }
+
+    .lag{
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    font-family: Lucida Handwriting, cursive;
+    justify-content: center;
+    padding: 15px 20px;
+    color: #ffffff;
+    background-image: url('193.jpg');
+    background-position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;    
+    }
 
 /* === Image Styling for Mobile === */
 .pic {
@@ -1660,13 +1681,21 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   margin: auto;
   padding: 13rem;
-  text-align: center;
 }
 
 
 /* Left Section */
 .about-main {
   flex: 2 1 600px;
+  border: 0.1rem solid #31363c;
+  border-radius: 20px;
+  box-shadow: #094fa5 0px 0px 20px;
+  padding: 2rem;
+  border-left: 2px solid #aebac6;  padding: 15px;
+}
+
+.in{
+  padding: 1.5rem;
 }
 
 .about-main h1 {
@@ -1687,6 +1716,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
   font-size: 1.05rem;
   text-align: justify;
   white-space: pre-line;
+
 }
 
 .about-skills {
@@ -1710,7 +1740,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 }
 
 .about-skills li {
-  background: #094fa5;
+  background: #333a43;
   padding: 0.3rem 1rem;
   border-radius: 20px;
 }
@@ -1718,8 +1748,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 /* Right Panel */
 .about-side {
   flex: 1 1 250px;
-  border-left: 2px solid #2c3e50;
-  padding-left: 2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -1728,7 +1757,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 .about-side h3 {
   color: #7898c8;
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .about-side blockquote {
@@ -1742,6 +1771,52 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 }
 
 
+.about-side-down {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-group {
+
+  background-color: transparent;
+  box-shadow: #094fa5 0px 0px 10px;
+  border-radius: 20px;
+  border-left: 2px solid #aebac6;  padding: 15px;
+
+}
+
+.info-group h3 {
+  color: #7898c8;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.info-group ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-group ul li::before {
+  content: "•";
+  color: #c5c1c1;
+  padding-right: 10px;
+}
+
+blockquote {
+  font-style: italic;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  #about {
+    flex-direction: column;
+  }
+
+  .about-main, .about-side {
+    width: 100%;
+  }
+}
 
 
     /* portfolio section*/
@@ -1774,7 +1849,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         display: flex;
         gap: 2.5vmin;
         position: relative;
-        padding: 50px 0;
+        padding-bottom: 100px;
     }
 
     .letter{
@@ -1815,19 +1890,24 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
 
     .lag{
-        display: flex;
-        padding: 20px 80px;
-        font-size: 2rem;
-        width: 100%;
+      display: flex;
+    font-family: Lucida Handwriting, cursive;
+    justify-content: center;
+    padding: 15px 20px;
+    color: #ececed;
+    background-image: url('193.jpg');
+    background-position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     }
 
 /* ─── TIMELINE CONTAINER ───────────────────────────────────── */
 .timeline {
   position: relative;
   background-color: #000;
-  padding: 0px 50px;
-  padding-bottom: 5rem;
-    overflow-x: auto;
+  padding: 90px 50px;
+  overflow-x: auto;
 }
 
 
@@ -1836,7 +1916,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 .timeline-container {
     background-color: #000;
       position: relative;
-
+      padding: 50px 0;
   overflow-x: auto;
   position: relative;
 
@@ -2615,18 +2695,14 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     }
 }
 
-/* Next Section */
-#nextSection {
-    position: relative;
-}
+
 
 .button-group {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 90px;
+    right: 17%;
     display: flex;
-    gap: 20px;
+    gap: 50px;
     z-index: 10;
 }
 
@@ -2662,13 +2738,12 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
 
 .dot-container {
     position: absolute;
-    bottom: 5px;
-    left: 50%;
+    bottom: 170px;
+    right: 19%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
     z-index: 9;
-    padding: 100px;
 }
 
 .dot-container .dot {
@@ -2745,9 +2820,9 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     /* Image should be on the right side */
     .image-container {
-        padding-bottom: 400px;
         position: relative;
         width: 50%;
+        height: 50%;
         
     }
     
@@ -2760,10 +2835,10 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
     
     .pic img {
         align-items: center;
-        width: 70%;
-        max-width: 600px;
         border-radius: 10px;
         box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        width: 50%;
+        height: 50%;
     }
 
     .text-container {
@@ -2795,6 +2870,7 @@ box-shadow: 0 0 40px rgb(126, 165, 255);
         opacity: 1;
         display: block;
         transform: translateX(0) scale(1);
+        line-height: 1.8rem;
     }
     
     /* === MOBILE RESPONSIVE FIX === */
