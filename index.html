@@ -5,10 +5,12 @@
     <title>Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href ="style.css">
+        <link rel="stylesheet" href ="day.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script defer src ="app.js"></script>
     <script defer src ="appp.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -47,6 +49,7 @@
     <div class="navbar">
         <a href="#about" class="logo">T</a>
         <nav>
+          <button id="theme-toggle" aria-label="Toggle theme" style="background-color: transparent;padding: 0.3rem; border-radius: 20px;">☀️</button>
           <a href="#nextSection">Projects</a>
           <a href="#contact">Contact</a>
           <a href="Resume.pdf">Resume</a>
@@ -58,7 +61,12 @@
     <div class="star-background"></div>
 
     <section id="action">
-      <div class="banner">
+      <div class="banner">    
+      <video autoplay muted loop playsinline class="light-bg dark-video">
+        <source src="vid2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+        <img  source src="sky.png" /> </img>
         <div class="slider" style="--quantity: 7">
           <div class="item" style="--position: 1"><img src="database.png" alt=""></div>
           <div class="item" style="--position: 2"><img src="database.png" alt=""></div>
@@ -76,9 +84,9 @@
 
       <!-- Corner Texts -->
       <div class="corner top-left">Hi there!</div>
-      <div class="corner top-right">Backend</div>
-      <div class="corner mid-right">Backend</div>
-      <div class="corner mid-left">Backend</div>
+      <div class="corner top-right">App-developer</div>
+      <div class="corner mid-right">Networks / Cloud</div>
+      <div class="corner mid-left">Full-Stack</div>
       <div class="corner bottom-left">Machine Learning</div>
       <div class="corner bottom-right">UI/UX</div>
     </section>
@@ -97,6 +105,47 @@
         <span></span>
         <span></span>
     </section>
+        
+<section class="horizontal-scroll-section">
+  <button class="scroll-btn left" onclick="scrollBoxes(-1)">&#8592;</button>
+
+  <div class="scroll-container">
+  <div class="boxx">
+    <i class="fas fa-laptop-code boxx-logo"></i>
+      <h3 class="boxx-heading">UI Designs</h3>
+      <p class="boxx-text">
+          I’ve Designed various websites focusing on user experience
+      </p>
+  </div>
+  <div class="boxx">
+    <i class="fas fa-microchip boxx-logo"></i>
+      <h3 class="boxx-heading">Hardware</h3>
+      <p class="boxx-text">
+          Hands-on experience with hardware components like sensors, motors, and microcontrollers.
+      </p>
+  </div>  <div class="boxx">
+    <i class="fas fa-network-wired boxx-logo"></i>
+      <h3 class="boxx-heading">Networks</h3>
+      <p class="boxx-text">
+          Network protocols, data transmission, and network security.
+      </p>
+  </div>  <div class="boxx">
+    <i class="fas fa-robot boxx-logo"></i>
+      <h3 class="boxx-heading">AI & ML</h3>
+      <p class="boxx-text">
+          Worked on AI and ML projects, focusing on data analysis and predictive modeling.
+      </p>
+  </div>  
+  <div class="boxx">
+    <i class="fas fa-cloud boxx-logo"></i>
+      <h3 class="boxx-heading">Cloud</h3>
+      <p class="boxx-text">
+          Familiar with cloud platforms like AWS and Firebase for deploying applications.
+  </div>
+  </div>
+
+  <button class="scroll-btn right" onclick="scrollBoxes(1)">&#8594;</button>
+</section>
 
 <section id="about">
   <!-- Main Intro -->
@@ -159,9 +208,9 @@
 
       <div class="info-group">
         <h3><i class="fas fa-address-card"></i> Contact</h3>
-        <p><strong>Email:</strong> <a href="mailto:thanesh@example.com" style="color: aliceblue;">thanesh@example.com</a></p>
+        <p><strong>Email:</strong> <a href="mailto:thanesh@example.com" style="color: rgb(3, 4, 4);">thanesh@example.com</a></p>
         <p><strong>Location:</strong> Toronto, Canada</p>
-        <p><strong>Phone:</strong> <a href="tel:+15551234567" style="color: aliceblue;">+1 (555) 123-4567</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+15551234567" style="color: rgb(0, 0, 0);">+1 (555) 123-4567</a></p>
       </div>
     </div>
   </div>
@@ -169,7 +218,7 @@
 
 
 
-     <h1 class="lag"> --------- Timeline & Skills ---------</h1>
+     <h1 class="lag">  Timeline & Skills</h1>
 
   <section class="timeline-container">
 
@@ -223,7 +272,7 @@
     <div class="letter">JAVA</div>
     <div class="letter">PYTHON</div>
     <div class="letter">C++</div>
-    <div class="letter">MACHINE-LANGUAGE</div>
+    <div class="letter">ML</div>
     <div class="letter">HTML</div>
     <div class="letter">CSS</div>
     <div class="letter">JAVASCRIPT</div>
@@ -231,17 +280,16 @@
 
     <div class="letter">REACT</div>
     <div class="letter">NODE.JS</div>
-    <div class="letter">MANGO-DB</div>
     <div class="letter">AWS</div>
     <div class="letter">SQL</div>
-    <div class="letter">AUDRIONO-UNO</div>
+    <div class="letter">AUDRIONO</div>
     <div class="letter">C</div>
     <div class="letter">AI</div>
 
         <div class="letter">JAVA</div>
     <div class="letter">PYTHON</div>
     <div class="letter">C++</div>
-    <div class="letter">MACHINE-LANGUAGE</div>
+    <div class="letter">ML</div>
     <div class="letter">HTML</div>
     <div class="letter">CSS</div>
     <div class="letter">JAVASCRIPT</div>
@@ -252,12 +300,12 @@
     <div class="letter">MANGO-DB</div>
     <div class="letter">AWS</div>
     <div class="letter">SQL</div>
-    <div class="letter">AUDRIONO-UNO</div>
+    <div class="letter">AUDRIONO</div>
     <div class="letter">C</div>
     <div class="letter">AI</div>    <div class="letter">JAVA</div>
     <div class="letter">PYTHON</div>
     <div class="letter">C++</div>
-    <div class="letter">MACHINE-LANGUAGE</div>
+    <div class="letter">ML</div>
     <div class="letter">HTML</div>
     <div class="letter">CSS</div>
     <div class="letter">JAVASCRIPT</div>
@@ -265,10 +313,9 @@
 
     <div class="letter">REACT</div>
     <div class="letter">NODE.JS</div>
-    <div class="letter">MANGO-DB</div>
     <div class="letter">AWS</div>
     <div class="letter">SQL</div>
-    <div class="letter">AUDRIONO-UNO</div>
+    <div class="letter">AUDRIONO</div>
     <div class="letter">C</div>
     <div class="letter">AI</div>
   </div>
@@ -276,7 +323,7 @@
 </section>
 
 
-    <h1 class="lag">----------- Recent Projects -----------</h1>
+    <h1 class="lag"> Recent Projects </h1>
 
     <section id="nextSection">
 
@@ -290,7 +337,8 @@
                     •	UI Designs: Designed responsive and interactive user interfaces using HTML5, CSS3, and modern UI/UX principles for an engaging experience.<br>
                     •	JavaScript: Developed dynamic functionality for search, filtering, shopping cart, and checkout using vanilla JavaScript and/or frameworks (e.g., React.js if applicable).<br>
                     </div>
-                <div class="text-item">STOCKIE is an innovative web-based application designed to provide users with comprehensive tools for real-time stock tracking, market analysis, and future price prediction. The platform empowers users to stay informed about the latest market trends by offering live stock price updates, relevant financial news, and predictive insights powered by machine learning algorithms. Additionally, STOCKIE includes interactive data visualizations that help users analyze stock performance and make informed investment decisions.<br><br></p>
+                <div class="text-item">
+                  STOCKIE is an innovative web-based application designed to provide users with comprehensive tools for real-time stock tracking, market analysis, and future price prediction. The platform empowers users to stay informed about the latest market trends by offering live stock price updates, relevant financial news, and predictive insights powered by machine learning algorithms. Additionally, STOCKIE includes interactive data visualizations that help users analyze stock performance and make informed investment decisions.<br><br></p>
                     <p>Technologies Used:<br>
                     •	API Data Extraction: Integrated third-party APIs (e.g., Alpha Vantage, Yahoo Finance) to retrieve real-time stock prices and market data.<br>
                     •	Web Scraping: Employed web scraping techniques (e.g., BeautifulSoup, Scrapy) to gather financial news and additional stock-related information from various sources.<br>
@@ -346,7 +394,7 @@
 
 
 
-      <h1 class="lag">----------- Projects Demo -----------</h1>
+      <h1 class="lag">Projects Demo </h1>
 
     <section id="services">
 
@@ -354,6 +402,10 @@
         
         <div class="row">
             <div class="box fadeup" id="box1">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
                 <div class="text">
                     ANU-Medicals
                 </div>
@@ -375,29 +427,39 @@
                     <a href="https://thanesh177.github.io/ANU-Medicals/"<i class='bx bx-expand' ></i></a>  
                 </div>       
             </div>            
-            <div class="box fadeup" id="box2">
-                <div class="text">
-                    STOCKIE
-                </div>
-                
-                <div  class ="c" id="c">
-                    <p>STOCKIE is a real-time stock prediction and analysis web application. 
-                        It allows users to track live stock prices, view market news, 
-                        predict futurec stock prices using machine learning models, and visualize price trends.<br><br>
-                        Technologies used :<br>
-                        •	API data extraction<br>
-                        •	Web scraping<br>
-                        •	Machine learning<br>
-                        •	Data visualization<br>
-                        </p>
-                </div>
-                <div class="pp">
-                    <a class="bt" href="#" id="myButton">></a>
-                    <a href="https://github.com/Thanesh177/STOCKIE.git>"<i class='bx bxl-github'></i></a>
-                    <a href="https://stockie.onrender.com"<i class='bx bx-expand' ></i></a>  
-                </div>       
+          <div class="box fadeup" id="box2">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="SHOPY.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            
+            <div class="text">
+              STOCKIE
             </div>
+
+            <div class="c" id="c">
+              <p>STOCKIE is a real-time stock prediction and analysis web application. 
+                It allows users to track live stock prices, view market news, 
+                predict future stock prices using machine learning models, and visualize price trends.<br><br>
+                Technologies used :<br>
+                • API data extraction<br>
+                • Web scraping<br>
+                • Machine learning<br>
+                • Data visualization<br>
+              </p>
+            </div>
+
+            <div class="pp">
+              <a class="bt" href="#" id="myButton">></a>
+              <a href="https://github.com/Thanesh177/STOCKIE.git"><i class='bx bxl-github'></i></a>
+              <a href="https://stockie.onrender.com"><i class='bx bx-expand'></i></a>  
+            </div>       
+          </div>
             <div class="box fadeup" id="box3">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
                 <div class="text">
                     BOOK-CYCLE
                 </div>
@@ -417,6 +479,10 @@
                 </div>       
             </div>
             <div class="box fadeup" id="box4">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
                 <div class="text" id="text">
                     Improving human-robot interaction using action recognition and
                         action prediction 
@@ -437,6 +503,10 @@
                 </div>       
             </div>
             <div class="box fadeup" id="box5">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
                 <div class="text">
                     Robotic-Bots
                 </div>
@@ -454,6 +524,10 @@
                 </div>       
             </div>
             <div class="box fadeup" id="box6">
+            <video class="video-bg" autoplay muted loop playsinline>
+              <source src="vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
                 <div class="text">
                     TheDCruz-Website
                 </div>
@@ -479,7 +553,7 @@
     </section>
 
     <section id="contact">
-    <h1 class="cont" style="padding: 50px;align-items: center;justify-content: center;color: white; font-size: 1.5rem;">GET IN TOUCH!</h1>
+    <h1 class="cont" style="padding: 50px;align-items: center;justify-content: center;color: white; font-size: 2rem;">GET IN TOUCH!</h1>
 
     <div class="contact-wrapper">
         <!-- Contact Form -->
@@ -505,7 +579,7 @@
         <a href="https://www.linkedin.com/in/ntthanesh/"><i class='bx bxl-linkedin'></i></a>
         <a href="https://www.instagram.com"><i class='bx bxl-instagram'></i></a>
     </div>
-    </section>
+  </section>
 
     <script>
         document.addEventListener('click', function(event) {
@@ -616,17 +690,17 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // animate only once
-      }
-    });
-  });
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // animate only once
+          }
+        });
+      });
 
-  document.querySelectorAll('.fadeup').forEach(el => observer.observe(el));
-</script>
+      document.querySelectorAll('.fadeup').forEach(el => observer.observe(el));
+    </script>
  </body>
  </html> 

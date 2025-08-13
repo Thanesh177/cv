@@ -225,3 +225,58 @@ document.addEventListener('mousemove', (e) => {
     draggedEl.style.transform = 'none'; // Cancel repel during drag
   }
 });
+
+
+  document.querySelectorAll('.box').forEach(box => {
+    const video = box.querySelector('.video-bg');
+    
+    box.addEventListener('mouseenter', () => {
+      video.play();
+    });
+
+    box.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0; // Optional: reset to start on hover
+    });
+  });
+
+
+
+  const toggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+    toggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+    toggle.textContent = '☀️';
+  }
+
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  });
+
+
+  function scrollBoxes(direction) {
+    const container = document.querySelector('.scroll-container');
+    const scrollAmount = 220; // box width + gap
+    container.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector('.dark-bg.dark-video');
+    if (video) {
+      video.playbackRate = 2; // 0.5x speed = half speed (slow motion)
+    }
+  });
